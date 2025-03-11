@@ -1,14 +1,11 @@
 # Add-Ins for Kengic
 
-***
 
 [![](https://img.shields.io/badge/release-v18.1-blue)](https://github.com/lixianguser/Add-Ins-for-Kengic/releases/tag/v18.1)
 
 科捷智能公司内部使用的西门子博途插件，旨在提高程序设计效率。
 
-***
-
-### 已开发功能
+## 已开发功能
 
 - 导出导入Xml文件
 - 导出WCS接口，并生成.csv文件
@@ -17,9 +14,7 @@
 - 批量给InstanceDB指定ProDiagFB
 - 批量生成触摸屏报警
 
-***
-
-### 西门子官方开发文档
+## 西门子官方开发文档
 
 [TIA Add-In](https://support.industry.siemens.com/cs/document/109773999/tia-add-in?lc=zh-cn)
 
