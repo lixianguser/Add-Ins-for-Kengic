@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PackageConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.siemens.com/automation/Openness/AddIn/Publisher/V18">
+    <Author>李翔</Author>
+    <Description>科捷使用的西门子博途插件</Description>
+    <AdditionalAssemblies>
+        <AssemblyInfo>
+            <Assembly>D:\Code\Add-Ins for Kengic\Add-Ins for Kengic\bin\Release\BouncyCastle.Cryptography.dll</Assembly>
+        </AssemblyInfo>
+        <AssemblyInfo>
+            <Assembly>D:\Code\Add-Ins for Kengic\Add-Ins for Kengic\bin\Release\Enums.NET.dll</Assembly>
+            <Pdb>D:\Code\Add-Ins for Kengic\Add-Ins for Kengic\bin\Release\Enums.NET.pdb</Pdb>
+        </AssemblyInfo>
+        <AssemblyInfo>
+            <Assembly>D:\Code\Add-Ins for Kengic\Add-Ins for Kengic\bin\Release\ExtendedNumerics.BigDecimal.dll</Assembly>
+        </AssemblyInfo>
+        <AssemblyInfo>
+            <Assembly>D:\Code\Add-Ins for Kengic\Add-Ins for Kengic\bin\Release\ICSharpCode.SharpZipLib.dll</Assembly>
+            <Pdb>D:\Code\Add-Ins for Kengic\Add-Ins for Kengic\bin\Release\ICSharpCode.SharpZipLib.pdb</Pdb>
+        </AssemblyInfo>
+        <AssemblyInfo>
+            <Assembly>D:\Code\Add-Ins for Kengic\Add-Ins for Kengic\bin\Release\MathNet.Numerics.dll</Assembly>
+        </AssemblyInfo>
+        <AssemblyInfo>
+            <Assembly>D:\Code\Add-Ins for Kengic\Add-Ins for Kengic\bin\Release\Microsoft.IO.RecyclableMemoryStream.dll</Assembly>
+        </AssemblyInfo>
+        <AssemblyInfo>
+            <Assembly>D:\Code\Add-Ins for Kengic\Add-Ins for Kengic\bin\Release\NPOI.Core.dll</Assembly>
+            <Pdb>D:\Code\Add-Ins for Kengic\Add-Ins for Kengic\bin\Release\NPOI.Core.pdb</Pdb>
+        </AssemblyInfo>
+        <AssemblyInfo>
+            <Assembly>D:\Code\Add-Ins for Kengic\Add-Ins for Kengic\bin\Release\NPOI.OOXML.dll</Assembly>
+            <Pdb>D:\Code\Add-Ins for Kengic\Add-Ins for Kengic\bin\Release\NPOI.OOXML.pdb</Pdb>
+        </AssemblyInfo>
+        <AssemblyInfo>
+            <Assembly>D:\Code\Add-Ins for Kengic\Add-Ins for Kengic\bin\Release\NPOI.OpenXml4Net.dll</Assembly>
+            <Pdb>D:\Code\Add-Ins for Kengic\Add-Ins for Kengic\bin\Release\NPOI.OpenXml4Net.pdb</Pdb>
+        </AssemblyInfo>
+        <AssemblyInfo>
+            <Assembly>D:\Code\Add-Ins for Kengic\Add-Ins for Kengic\bin\Release\NPOI.OpenXmlFormats.dll</Assembly>
+            <Pdb>D:\Code\Add-Ins for Kengic\Add-Ins for Kengic\bin\Release\NPOI.OpenXmlFormats.pdb</Pdb>
+        </AssemblyInfo>
+        <AssemblyInfo>
+            <Assembly>D:\Code\Add-Ins for Kengic\Add-Ins for Kengic\bin\Release\Siemens.Collaboration.Net.dll</Assembly>
+        </AssemblyInfo>
+        <AssemblyInfo>
+            <Assembly>D:\Code\Add-Ins for Kengic\Add-Ins for Kengic\bin\Release\Siemens.Collaboration.Net.CoreExtensions.dll</Assembly>
+        </AssemblyInfo>
+        <AssemblyInfo>
+            <Assembly>D:\Code\Add-Ins for Kengic\Add-Ins for Kengic\bin\Release\Siemens.Collaboration.Net.TiaPortal.AddIn.Extensions.dll</Assembly>
+        </AssemblyInfo>
+        <AssemblyInfo>
+            <Assembly>D:\Code\Add-Ins for Kengic\Add-Ins for Kengic\bin\Release\SixLabors.Fonts.dll</Assembly>
+        </AssemblyInfo>
+        <AssemblyInfo>
+            <Assembly>D:\Code\Add-Ins for Kengic\Add-Ins for Kengic\bin\Release\SixLabors.ImageSharp.dll</Assembly>
+        </AssemblyInfo>
+        <AssemblyInfo>
+            <Assembly>D:\Code\Add-Ins for Kengic\Add-Ins for Kengic\bin\Release\System.Buffers.dll</Assembly>
+        </AssemblyInfo>
+        <AssemblyInfo>
+            <Assembly>D:\Code\Add-Ins for Kengic\Add-Ins for Kengic\bin\Release\System.Memory.dll</Assembly>
+        </AssemblyInfo>
+        <AssemblyInfo>
+            <Assembly>D:\Code\Add-Ins for Kengic\Add-Ins for Kengic\bin\Release\System.Numerics.Vectors.dll</Assembly>
+        </AssemblyInfo>
+        <AssemblyInfo>
+            <Assembly>D:\Code\Add-Ins for Kengic\Add-Ins for Kengic\bin\Release\System.Runtime.CompilerServices.Unsafe.dll</Assembly>
+        </AssemblyInfo>
+        <AssemblyInfo>
+            <Assembly>D:\Code\Add-Ins for Kengic\Add-Ins for Kengic\bin\Release\System.Security.Cryptography.Pkcs.dll</Assembly>
+        </AssemblyInfo>
+        <AssemblyInfo>
+            <Assembly>D:\Code\Add-Ins for Kengic\Add-Ins for Kengic\bin\Release\System.Security.Cryptography.Xml.dll</Assembly>
+        </AssemblyInfo>
+        <AssemblyInfo>
+            <Assembly>D:\Code\Add-Ins for Kengic\Add-Ins for Kengic\bin\Release\System.Text.Encoding.CodePages.dll</Assembly>
+        </AssemblyInfo>
+        <AssemblyInfo>
+            <Assembly>D:\Code\Add-Ins for Kengic\Add-Ins for Kengic\bin\Release\System.Threading.Tasks.Extensions.dll</Assembly>
+        </AssemblyInfo>
+    </AdditionalAssemblies>
+    <DisplayInMultiuser />
+    <Product>
+        <Name>Add-Ins for Kengic</Name>
+        <Id>64a99bcd-a4bb-4a2b-a430-107c048a8c1a</Id>
+        <Version>18.1.0</Version>
+    </Product>
+    <FeatureAssembly>
+        <AssemblyInfo>
+            <Assembly>D:\Code\Add-Ins for Kengic\Add-Ins for Kengic\bin\Release\Add_Ins_for_Kengic.dll</Assembly>
+            <Pdb>D:\Code\Add-Ins for Kengic\Add-Ins for Kengic\bin\Release\Add_Ins_for_Kengic.pdb</Pdb>
+        </AssemblyInfo>
+    </FeatureAssembly>
+    <RequiredPermissions>
+        <TIAPermissions>
+            <TIA.ReadWrite />
+        </TIAPermissions>
+        <SecurityPermissions>
+            <System.Configuration.ConfigurationPermission/>
+            <System.Data.Odbc.OdbcPermission/>
+            <System.Data.OleDb.OleDbPermission/>
+            <System.Data.SqlClient.SqlClientPermission/>
+            <System.Diagnostics.EventLogPermission/>
+            <System.Drawing.Printing.PrintingPermission/>
+            <System.Net.Mail.SmtpPermission/>
+            <System.Net.NetworkInformation.NetworkInformationPermission/>
+            <System.Net.SocketPermission/>
+            <System.Net.WebPermission/>
+            <System.Security.Permissions.EnvironmentPermission>
+                <Comment>Environment access</Comment>
+            </System.Security.Permissions.EnvironmentPermission>
+            <System.Security.Permissions.FileDialogPermission>
+                <Comment>Show Open- and SaveFileDialog</Comment>
+            </System.Security.Permissions.FileDialogPermission>
+            <System.Security.Permissions.FileIOPermission>
+                <Comment>File access</Comment>
+            </System.Security.Permissions.FileIOPermission>
+            <System.Security.Permissions.IsolatedStorageFilePermission/>
+            <System.Security.Permissions.KeyContainerPermission/>
+            <System.Security.Permissions.RegistryPermission/>
+            <System.Security.Permissions.StorePermission/>
+            <System.Security.Permissions.UIPermission>
+                <Comment>Necessary to show windows (e.g. WPF)</Comment>
+            </System.Security.Permissions.UIPermission>
+            <System.Security.Permissions.WebBrowserPermission/>
+            <System.Security.Permissions.MediaPermission/>
+            <System.Security.Permissions.SecurityPermission.UnmanagedCode>
+                <Comment>Necessary to show windows (e.g. WPF)</Comment>
+            </System.Security.Permissions.SecurityPermission.UnmanagedCode>
+            <Siemens.Engineering.AddIn.Permissions.ProcessStartPermission>
+                <Comment>Start new Process</Comment>
+            </Siemens.Engineering.AddIn.Permissions.ProcessStartPermission>
+        </SecurityPermissions>
+    </RequiredPermissions>
+</PackageConfiguration>

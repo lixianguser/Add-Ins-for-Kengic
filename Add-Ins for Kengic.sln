@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Add-Ins for Kengic", "Add-Ins for Kengic\Add-Ins for Kengic.csproj", "{5D13D497-3C84-41BC-B38A-B56DD0897386}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5D13D497-3C84-41BC-B38A-B56DD0897386}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D13D497-3C84-41BC-B38A-B56DD0897386}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D13D497-3C84-41BC-B38A-B56DD0897386}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D13D497-3C84-41BC-B38A-B56DD0897386}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
