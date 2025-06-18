@@ -9,7 +9,8 @@ namespace Kengic
     {
         private List<DeviceInfo> devices;
 
-        public Device device;
+        //public Device device;
+        public string SelectName;
 
         public AlarmForm()
         {
@@ -47,14 +48,15 @@ namespace Kengic
         private void buttonSelect_Click(object sender, EventArgs e)
         {
             // 获取选中的设备并显示信息
-            if (listBoxDevices.SelectedItem is DeviceInfo selectedDeviceInfo) device = selectedDeviceInfo.Device;
+            //if (listBoxDevices.SelectedItem is DeviceInfo selectedDeviceInfo) device = selectedDeviceInfo.Device;
+            if (listBoxDevices.SelectedItem is DeviceInfo selectedDeviceInfo) SelectName = selectedDeviceInfo.Name;
         }
     }
 
     public class DeviceInfo
     {
         public string Name   { get; set; }
-        public Device Device { get; set; }
+        //public Device Device { get; set; }
 
         public override string ToString()
         {

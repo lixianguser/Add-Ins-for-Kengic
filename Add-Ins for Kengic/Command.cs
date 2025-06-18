@@ -33,10 +33,10 @@ namespace Kengic
         /// <param name="exception">系统抛出的异常信息</param>
         public static void ShowException(this MessageBox messageBox, EngineeringException exception)
         {
-            messageBox.ShowNotification(NotificationIcon.Error, "异常", 
+            messageBox.ShowNotification(NotificationIcon.Error, "异常",
                 exception.MessageData.Text, exception.Message);
         }
-        
+
         /// <summary>
         /// 展示异常详细信息🔎
         /// </summary>
@@ -44,10 +44,10 @@ namespace Kengic
         /// <param name="exception">系统抛出的异常信息</param>
         public static void ShowException(this MessageBox messageBox, Exception exception)
         {
-            messageBox.ShowNotification(NotificationIcon.Error, "异常", 
+            messageBox.ShowNotification(NotificationIcon.Error, "异常",
                 exception.Message, exception.StackTrace);
         }
-        
+
         /// <summary>
         /// 导出程序为xml文件📃
         /// </summary>
@@ -69,18 +69,20 @@ namespace Kengic
 
                     if (item.ProgrammingLanguage == ProgrammingLanguage.ProDiag)
                     {
-                        DirectoryInfo directoryInfo = new DirectoryInfo(Path.GetDirectoryName(exportPath) ?? string.Empty);
+                        DirectoryInfo directoryInfo =
+                            new DirectoryInfo(Path.GetDirectoryName(exportPath) ?? string.Empty);
                         ((FB)item).ExportProDIAGInfo(directoryInfo);
                         return;
                     }
-                    
-                    if (item.IsConsistent)//编译的结果
+
+                    if (item.IsConsistent) //编译的结果
                     {
                         //删除已存在的文件
                         if (File.Exists(exportPath))
                         {
                             File.Delete(exportPath);
                         }
+
                         //导出程序块
                         item.Export(new FileInfo(exportPath), exportOption);
                     }
@@ -88,6 +90,7 @@ namespace Kengic
                     {
                         throw new ArgumentException("目标未编译");
                     }
+
                     break;
                 }
                 case PlcTagTable _:
@@ -123,13 +126,13 @@ namespace Kengic
                     break;
                 }
                 case PlcExternalSource _:
-                    
+
                     break;
             }
 
             Console.WriteLine($"导出完成：{exportItem}");
         }
-        
+
         /// <summary>
         /// 递归的方式导出指定instanceOfName的FB块
         /// </summary>
@@ -142,9 +145,10 @@ namespace Kengic
                     ExportInfo(plcBlock, filePath);
                 }
             }
+
             foreach (PlcBlockUserGroup subBlockGroup in blockGroup.Groups)
             {
-                subBlockGroup.ExportInfo(instanceOfName,filePath);
+                subBlockGroup.ExportInfo(instanceOfName, filePath);
             }
         }
 
@@ -161,12 +165,12 @@ namespace Kengic
             {
                 return;
             }
-            
+
             //导出有Supervisions的InstanceDB
             foreach (PlcBlock plcBlock in blockGroup.Blocks)
             {
                 if (plcBlock.ProgrammingLanguage == ProgrammingLanguage.DB)
-                { 
+                {
                     foreach (EngineeringAttributeInfo info in plcBlock.GetAttributeInfos())
                     {
                         //获取Supervisions
@@ -185,12 +189,12 @@ namespace Kengic
                 //获取ProDiagFB
                 if (plcBlock.ProgrammingLanguage == ProgrammingLanguage.ProDiag)
                 {
-                    string[] filePaths = 
+                    string[] filePaths =
                     {
                         $@"{exportPath}\{plcBlock.Name}_en-US.csv",
                         $@"{exportPath}\{plcBlock.Name}_zh-CN.csv",
                     };
-                    
+
                     // //删除文件
                     // foreach (var file in filePaths)
                     // {
@@ -199,8 +203,8 @@ namespace Kengic
                     //         File.Delete(file);
                     //     }
                     // }
-                    
-                    
+
+
                     //导出ProDiagFB为.csv文件
                     plcBlock.ExportInfo(filePaths[0]);
                 }
@@ -209,12 +213,11 @@ namespace Kengic
             //递归查询所有
             foreach (PlcBlockUserGroup subBlockGroup in blockGroup.Groups)
             {
-                subBlockGroup.ExportInfo(exportPath,true);
+                subBlockGroup.ExportInfo(exportPath, true);
             }
         }
-        
-        
-        
+
+
         /// <summary>
         /// 递归遍历所有 PlcBlockGroup 并返回 List&lt;Block&gt;
         /// </summary>
@@ -232,7 +235,7 @@ namespace Kengic
 
             foreach (PlcBlock block in proDiagBlocks)
             {
-                result.Add(new ProDiagFB{ Name = block.Name});
+                result.Add(new ProDiagFB { Name = block.Name });
             }
 
             // 递归遍历所有子组
@@ -243,7 +246,7 @@ namespace Kengic
 
             return result;
         }
-        
+
         /// <summary>
         /// 导入xml文件📃
         /// </summary>
@@ -251,11 +254,10 @@ namespace Kengic
         /// <param name="filePath">导入xml文件的路径</param>
         public static void ImportInfo(this IEngineeringCompositionOrObject destination, string filePath)
         {
-            
-            FileInfo fileInfo = new FileInfo(filePath);
+            FileInfo            fileInfo     = new FileInfo(filePath);
             const ImportOptions importOption = ImportOptions.Override;
             filePath = fileInfo.FullName;
-            
+
             switch (destination)
             {
                 case CycleComposition _:
@@ -335,10 +337,10 @@ namespace Kengic
                     folder.WatchTables.Import(fileInfo, importOption);
                     break;
             }
-            
+
             Console.WriteLine($"导入完成：{filePath}");
         }
-        
+
         /// <summary>
         /// 获取项目实例
         /// </summary>
@@ -347,7 +349,7 @@ namespace Kengic
         public static ProjectBase GetProjectBase(this TiaPortal tiaPortal)
         {
             ProjectBase projectBase;
-            
+
             if (tiaPortal.LocalSessions.Any())
             {
                 //多用户本地会话
@@ -372,7 +374,7 @@ namespace Kengic
         {
             //获取PlcSoftware
             PlcSoftware plcSoftware = null;
-            
+
             foreach (IEngineeringObject engineeringObject in menuSelectionProvider)
             {
                 IEngineeringObject parent = engineeringObject.Parent;
@@ -380,12 +382,13 @@ namespace Kengic
                 {
                     parent = parent.Parent;
                 }
+
                 plcSoftware = parent as PlcSoftware;
             }
 
             return plcSoftware;
         }
-        
+
         /// <summary>
         /// 查询触摸屏目标
         /// </summary>
@@ -404,9 +407,10 @@ namespace Kengic
                     return hmiTarget;
                 }
             }
+
             return null;
         }
-        
+
         /// <summary>
         /// 通过设备项查询PLC目标
         /// </summary>
@@ -424,7 +428,44 @@ namespace Kengic
 
             return null;
         }
+
+        /// <summary>
+        /// 获取项目中所有设备
+        /// </summary>
+        /// <param name="project">项目</param>
+        /// <returns></returns>
+        private static IEnumerable<Device> AllDevices(this ProjectBase project)
+        {
+            foreach (Device device in project.Devices)
+                yield return device;
+            foreach (var group in project.DeviceGroups)
+            {
+                foreach (var device in GetDevicesFromGroupRecursive(group))
+                {
+                    yield return device;
+                }
+            }
+            foreach (Device device in project.UngroupedDevicesGroup.Devices)
+                yield return device;
+        }
         
+        /// <summary>
+        /// 遍历用户组中获取设备
+        /// </summary>
+        /// <param name="group"></param>
+        /// <returns></returns>
+        private static IEnumerable<Device> GetDevicesFromGroupRecursive(DeviceUserGroup group)
+        {
+            foreach (var device in group.Devices)
+                yield return device;
+
+            foreach (var subGroup in group.Groups)
+            {
+                foreach (var device in GetDevicesFromGroupRecursive(subGroup))
+                    yield return device;
+            }
+        }
+
         /// <summary>
         /// 获取所有触摸屏设备信息
         /// </summary>
@@ -438,18 +479,38 @@ namespace Kengic
             {
                 if (device.DeviceItems[0].GetAttribute("TypeIdentifier").ToString().Contains(":6AV2"))
                 {
-                    DeviceInfo deviceInfo = new DeviceInfo { Name = device.Name, Device = device };
+                    //DeviceInfo deviceInfo = new DeviceInfo { Name = device.Name, Device = device };
+                    DeviceInfo deviceInfo = new DeviceInfo { Name = device.Name };
                     devices.Add(deviceInfo);
                 }
             }
 
             return devices;
         }
-        
-        
-        
+
+        /// <summary>
+        /// 根据设备名称查找设备
+        /// </summary>
+        /// <param name="projectBase">项目</param>
+        /// <param name="deviceName">设备名称</param>
+        /// <returns>设备Device</returns>
+        public static Device FindDeviceByName(this ProjectBase projectBase, string deviceName)
+        {
+            //获取所有设备，通过设备名称查找设备，并返回设备。
+            foreach (Device device in projectBase.AllDevices())
+            {
+                if (device.DeviceItems[0].GetAttribute("Name").ToString().Contains(deviceName))
+                {
+                    return device;
+                }
+            }
+
+            return null;
+        }
+
+
         //------
-        
+
         /// <summary>
         /// 删除文件夹及其内容
         /// </summary>
@@ -479,7 +540,7 @@ namespace Kengic
             // 最后，删除目录本身
             Directory.Delete(targetDir, false);
         }
-        
+
         /// <summary>
         /// 字符串处理将"/"替换为"_"
         /// </summary>

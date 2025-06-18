@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -20,7 +21,6 @@ namespace Kengic
     public class AddIn : ContextMenuAddIn
     {
         private readonly TiaPortal   _tiaPortal;
-        private          ProjectBase _projectBase;
 
         public AddIn(TiaPortal tiaPortal) : base("Add-Ins")
         {
@@ -100,13 +100,16 @@ namespace Kengic
 
                             //获取程序块类型
                             string type = iEngineeringObject.GetType().ToString().Split('.').Last();
+                            
+                            //获取程序块版本号
+                            string version = iEngineeringObject.GetAttribute("HeaderVersion").ToString();
             
                             //创建文件路径
                             string path     = dialog.SelectedPath;
-                            string filePath = Path.Combine(path, $"{type}+{name}.xml");
+                            string filePath = Path.Combine(path, $"{type}+{name}+v{version}.xml");
             
                             //导出程序块
-                            exclusiveAccess.Text = $"正在导出： [{type}]{name}";
+                            exclusiveAccess.Text = $"正在导出： [{type}]{name}v{version}";
                             iEngineeringObject.ExportInfo(filePath);
                             feedback.Log(NotificationIcon.Information, $"已导出:{filePath}");
                         
@@ -428,10 +431,10 @@ namespace Kengic
                 using (ExclusiveAccess exclusiveAccess = _tiaPortal.ExclusiveAccess("导入Xml文件"))
                 {
                     //获取项目实例
-                    _projectBase = _tiaPortal.GetProjectBase();
+                    ProjectBase projectBase = _tiaPortal.GetProjectBase();
                     
                     //如果项目实例为空，抛出异常
-                    if (_projectBase == null)
+                    if (projectBase == null)
                     {
                         throw new EngineeringObjectDisposedException("无法获取项目实例");
                     }
@@ -450,7 +453,7 @@ namespace Kengic
                         && !string.IsNullOrEmpty(dialog.FileName))
                     {
                         //创建撤回撤销事务
-                        using (Transaction transaction = exclusiveAccess.Transaction(_projectBase, "导入Xml数据"))
+                        using (Transaction transaction = exclusiveAccess.Transaction(projectBase, "导入Xml数据"))
                         {
                             foreach (IEngineeringCompositionOrObject iEngineeringCompositionOrObject in
                                      menuSelectionProvider.GetSelection())
@@ -531,9 +534,11 @@ namespace Kengic
                     int increment      = numberForm.Increment;
                     feedback.Log(NotificationIcon.Information, 
                         $"获取输入信息:起始编号{startingNumber},递增值{increment}");
+
+                    ProjectBase projectBase = _tiaPortal.GetProjectBase();
                     
                     //创建撤回撤销事务
-                    using (Transaction transaction = exclusiveAccess.Transaction(_projectBase, 
+                    using (Transaction transaction = exclusiveAccess.Transaction(projectBase, 
                                "自动编号"))
                     {
                         foreach (PlcBlock plcBlock in menuSelectionProvider.GetSelection())
@@ -594,7 +599,7 @@ namespace Kengic
         private void Alarm_OnClick(MenuSelectionProvider<DeviceItem> menuSelectionProvider)
         {
 #if DEBUG
-            System.Diagnostics.Debugger.Launch();
+            Debugger.Launch();
 #endif
             
             //反馈API
@@ -619,20 +624,20 @@ namespace Kengic
 
                 if (warningResult != ConfirmationResult.Yes)
                 {
-                    feedback.Log(NotificationIcon.Error, $"提示窗口返回No");
+                    feedback.Log(NotificationIcon.Error, "提示窗口返回No");
                     return;
                 }
 
                 using (ExclusiveAccess exclusiveAccess = _tiaPortal.ExclusiveAccess("创建触摸屏报警"))
                 {
                     //获取项目
-                    _projectBase   = _tiaPortal.GetProjectBase();
+                    ProjectBase projectBase   = _tiaPortal.GetProjectBase();
                     
                     using (Transaction transaction =
-                           exclusiveAccess.Transaction(_projectBase, "导入\"自动生成报警变量表\""))
+                           exclusiveAccess.Transaction(projectBase, "导入\"自动生成报警变量表\""))
                     {
                         //获取所有设备，并把名称和Device写入到数据
-                        var deviceInfos = _projectBase.GetDeviceInfos();
+                        var deviceInfos = projectBase.GetDeviceInfos();
 
                         //新建触摸屏选择窗体
                         AlarmForm mainForm = new AlarmForm();
@@ -647,8 +652,7 @@ namespace Kengic
                         FolderBrowserDialog dialog = new FolderBrowserDialog();
                         dialog.Description = "请选择导出文件的保存路径";
 
-                        if (dialog.ShowDialog(new Form()
-                                { TopMost = true, WindowState = FormWindowState.Maximized }) == DialogResult.OK)
+                        if (dialog.ShowDialog(new Form { TopMost = true, WindowState = FormWindowState.Maximized }) == DialogResult.OK)
                         {
                             //获取保存文件的位置
                             string path     = dialog.SelectedPath;
@@ -663,7 +667,7 @@ namespace Kengic
                                 //监听独占窗口取消按钮
                                 if (exclusiveAccess.IsCancellationRequested)
                                 {
-                                    feedback.Log(NotificationIcon.Error, $"监听独占窗口取消");
+                                    feedback.Log(NotificationIcon.Error, "监听独占窗口取消");
                                     return;
                                 }
 
@@ -737,7 +741,10 @@ namespace Kengic
                                 #region 获取HMI的Connection名称 
                                 
                                 //获取HMI目标
-                                Device    hmiDevice = mainForm.device;
+                                //Device    hmiDevice = mainForm.device;
+                                string selectedName = mainForm.SelectName;
+                                Device hmiDevice    = projectBase.FindDeviceByName(selectedName);
+
                                 HmiTarget hmiTarget = hmiDevice.GetHmiTarget();
                                 
                                 //导出默认变量表
@@ -937,15 +944,15 @@ namespace Kengic
                 using (ExclusiveAccess exclusiveAccess = _tiaPortal.ExclusiveAccess("指定ProDiagFB"))
                 {
                     //获取项目实例
-                    _projectBase = _tiaPortal.GetProjectBase();
+                    ProjectBase projectBase = _tiaPortal.GetProjectBase();
 
                     //如果项目实例为空，抛出异常
-                    if (_projectBase == null)
+                    if (projectBase == null)
                     {
                         throw new EngineeringObjectDisposedException("无法获取项目实例");
                     }
 
-                    using (Transaction transaction = exclusiveAccess.Transaction(_projectBase, "指定ProDiagFB"))
+                    using (Transaction transaction = exclusiveAccess.Transaction(projectBase, "指定ProDiagFB"))
                     {
 
                         //新建ProDiagFB选择窗体

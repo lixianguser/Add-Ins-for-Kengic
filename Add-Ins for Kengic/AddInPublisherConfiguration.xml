@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PackageConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.siemens.com/automation/Openness/AddIn/Publisher/V18">
+<PackageConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.siemens.com/automation/Openness/AddIn/Publisher/V20">
     <Author>李翔</Author>
     <Description>科捷使用的西门子博途插件</Description>
     <AdditionalAssemblies>
@@ -38,15 +38,6 @@
         <AssemblyInfo>
             <Assembly>D:\Code\Add-Ins for Kengic\Add-Ins for Kengic\bin\Release\NPOI.OpenXmlFormats.dll</Assembly>
             <Pdb>D:\Code\Add-Ins for Kengic\Add-Ins for Kengic\bin\Release\NPOI.OpenXmlFormats.pdb</Pdb>
-        </AssemblyInfo>
-        <AssemblyInfo>
-            <Assembly>D:\Code\Add-Ins for Kengic\Add-Ins for Kengic\bin\Release\Siemens.Collaboration.Net.dll</Assembly>
-        </AssemblyInfo>
-        <AssemblyInfo>
-            <Assembly>D:\Code\Add-Ins for Kengic\Add-Ins for Kengic\bin\Release\Siemens.Collaboration.Net.CoreExtensions.dll</Assembly>
-        </AssemblyInfo>
-        <AssemblyInfo>
-            <Assembly>D:\Code\Add-Ins for Kengic\Add-Ins for Kengic\bin\Release\Siemens.Collaboration.Net.TiaPortal.AddIn.Extensions.dll</Assembly>
         </AssemblyInfo>
         <AssemblyInfo>
             <Assembly>D:\Code\Add-Ins for Kengic\Add-Ins for Kengic\bin\Release\SixLabors.Fonts.dll</Assembly>
