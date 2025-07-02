@@ -1,8 +1,11 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Fseanli_002FDocuments_002FCode_002FAdd_002DIns_0020for_0020Kengic_002Fpackages_002FSixLabors_002EImageSharp_002E3_002E1_002E10_002Flib_002Fnet6_002E0_002FSixLabors_002EImageSharp_002Edll/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Fseanli_002FDocuments_002FCode_002FAdd_002DIns_0020for_0020Kengic_002FV18_002EAddIn_002FSiemens_002EEngineering_002EAddIn_002Edll/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Fseanli_002FDocuments_002FCode_002FV18_002EAddIn_002FSiemens_002EEngineering_002EAddIn_002Edll/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Fseanli_002FDocuments_002FCode_002FV20_002EAddIn_002FSiemens_002EEngineering_002EAddIn_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Fseanli_002FDocuments_002FCode_002FV20_002EAddIn_002FSiemens_002EEngineering_002Edll/@EntryIndexedValue">True</s:Boolean>
 	<s:String x:Key="/Default/Environment/AssemblyExplorer/XmlDocument/@EntryValue">&lt;AssemblyExplorer&gt;
   &lt;Assembly Path="/Users/seanli/Documents/Code/Add-Ins for Kengic/packages/Siemens.Collaboration.Net.TiaPortal.AddIn.Extensions.20.0.1744193617/lib/net48/Siemens.Collaboration.Net.TiaPortal.AddIn.Extensions.dll" /&gt;
   &lt;Assembly Path="/Users/seanli/Documents/Code/Add-Ins for Kengic/packages/Siemens.Collaboration.Net.CoreExtensions.3.0.1725521661/lib/net48/Siemens.Collaboration.Net.CoreExtensions.dll" /&gt;
+  &lt;Assembly Path="/Users/seanli/Documents/Code/V20.AddIn/Siemens.Engineering.AddIn.dll" /&gt;
 &lt;/AssemblyExplorer&gt;</s:String></wpf:ResourceDictionary>

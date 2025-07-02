@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Siemens.Engineering;
 using Siemens.Engineering.Hmi;
 using Siemens.Engineering.Hmi.Communication;
@@ -21,6 +22,7 @@ using Siemens.Engineering.SW.Types;
 using Siemens.Engineering.SW.WatchAndForceTables;
 using Screen = Siemens.Engineering.Hmi.Screen.Screen;
 using MessageBox = Siemens.Engineering.AddIn.MessageBox;
+using Microsoft.Win32;
 
 namespace Kengic
 {
@@ -46,6 +48,35 @@ namespace Kengic
         {
             messageBox.ShowNotification(NotificationIcon.Error, "异常",
                 exception.Message, exception.StackTrace);
+        }
+
+        /// <summary>
+        /// 获取V20版本是否Update3及以上版本程序块可以导出成SIMATIC SD文件
+        /// </summary>
+        /// <returns></returns>
+        public static bool CanExportAsDocuments()
+        {
+            string keyPath       = @"HKEY_LOCAL_MACHINE\SOFTWARE\Siemens\Automation\_InstalledSW\TIAP20\TIA_Opns";
+            string versionString = (string)Registry.GetValue(keyPath, "VersionString", null);
+
+            if (versionString != null)
+            {
+                // 正则提取最后一段版本号
+                Match match = Regex.Match(versionString, @"V\d+\.\d+\.\d+\.(\d+)");
+                if (match.Success && int.TryParse(match.Groups[1].Value, out int buildNumber))
+                {
+                    if (buildNumber >= 3)
+                    {
+                        return true;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+            return false;
         }
 
         /// <summary>
@@ -217,6 +248,81 @@ namespace Kengic
             }
         }
 
+        /// <summary>
+        /// 将程序块导出为文档
+        /// </summary>
+        /// <param name="plcBlock">程序块</param>
+        /// <param name="exportPath">导出路径</param>
+        public static void ExportInfo(this PlcBlock plcBlock,string exportPath)
+        {
+            if (plcBlock.ProgrammingLanguage == ProgrammingLanguage.ProDiag_OB)
+                return;
+
+            if (plcBlock.ProgrammingLanguage == ProgrammingLanguage.ProDiag)
+                return;
+            
+            //获取文件路径
+            string directory = Path.GetDirectoryName(exportPath);
+            if (directory == null)
+                return;
+            
+            //获取文件无后缀名称
+            string fileName = Path.GetFileNameWithoutExtension(exportPath);
+            
+            //删除已存在的文件
+            string s7dcl = Path.Combine(directory, $"{fileName}.s7dcl");
+            if (File.Exists(s7dcl))
+            {
+                File.Delete(s7dcl);
+            }
+            
+            //删除已存在的文件
+            string s7res = Path.Combine(directory, $"{fileName}.s7res");
+            if (File.Exists(s7res))
+            {
+                File.Delete(s7res);
+            }
+
+            if (plcBlock.IsConsistent) //编译的结果
+            {
+                plcBlock.ExportAsDocuments(new DirectoryInfo(directory), fileName);
+            }
+        }
+        
+        /// <summary>
+        /// 将 UDT 导出为文档
+        /// </summary>
+        /// <param name="plcType">用户数据类型</param>
+        /// <param name="exportPath">导出路径</param>
+        public static void ExportInfo(this PlcType plcType,string exportPath)
+        {
+            //获取文件路径
+            string directory = Path.GetDirectoryName(exportPath);
+            if (directory == null)
+                return;
+            
+            //获取文件无后缀名称
+            string fileName = Path.GetFileNameWithoutExtension(exportPath);
+            
+            //删除已存在的文件
+            string s7dcl = Path.Combine(directory, $"{fileName}.s7dcl");
+            if (File.Exists(s7dcl))
+            {
+                File.Delete(s7dcl);
+            }
+            
+            //删除已存在的文件
+            string s7res = Path.Combine(directory, $"{fileName}.s7res");
+            if (File.Exists(s7res))
+            {
+                File.Delete(s7res);
+            }
+
+            if (plcType.IsConsistent) //编译的结果
+            {
+                plcType.ExportAsDocuments(new DirectoryInfo(directory), fileName);
+            }
+        }
 
         /// <summary>
         /// 递归遍历所有 PlcBlockGroup 并返回 List&lt;Block&gt;
