@@ -288,6 +288,41 @@ namespace Kengic
                 plcBlock.ExportAsDocuments(new DirectoryInfo(directory), fileName);
             }
         }
+        
+        /// <summary>
+        /// 将 UDT 导出为文档
+        /// </summary>
+        /// <param name="plcType">用户数据类型</param>
+        /// <param name="exportPath">导出路径</param>
+        public static void ExportInfo(this PlcType plcType,string exportPath)
+        {
+            //获取文件路径
+            string directory = Path.GetDirectoryName(exportPath);
+            if (directory == null)
+                return;
+            
+            //获取文件无后缀名称
+            string fileName = Path.GetFileNameWithoutExtension(exportPath);
+            
+            //删除已存在的文件
+            string s7dcl = Path.Combine(directory, $"{fileName}.s7dcl");
+            if (File.Exists(s7dcl))
+            {
+                File.Delete(s7dcl);
+            }
+            
+            //删除已存在的文件
+            string s7res = Path.Combine(directory, $"{fileName}.s7res");
+            if (File.Exists(s7res))
+            {
+                File.Delete(s7res);
+            }
+
+            if (plcType.IsConsistent) //编译的结果
+            {
+                plcType.ExportAsDocuments(new DirectoryInfo(directory), fileName);
+            }
+        }
 
         /// <summary>
         /// 递归遍历所有 PlcBlockGroup 并返回 List&lt;Block&gt;

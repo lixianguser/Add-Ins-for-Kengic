@@ -14,6 +14,7 @@ using Siemens.Engineering.Hmi.Tag;
 using Siemens.Engineering.HW;
 using Siemens.Engineering.SW;
 using Siemens.Engineering.SW.Blocks;
+using Siemens.Engineering.SW.Types;
 using MessageBox = Siemens.Engineering.AddIn.MessageBox;
 
 namespace Kengic
@@ -32,14 +33,14 @@ namespace Kengic
             //导出
             Submenu export = addInRoot.Items.AddSubmenu("导出");
             export.Items.AddActionItem<IEngineeringObject>("Xml数据", Export_OnClick);
-            export.Items.AddActionItem<PlcBlock>("SIMATIC SD文件", Export_OnClick);
+            export.Items.AddActionItem<PlcBlock,PlcType>("SIMATIC SD文件", Export_OnClick);
             export.Items.AddActionItem<GlobalDB>("WCS接口", Export_OnClick);
             export.Items.AddActionItem<InstanceDB>("SCADA接口", Export_OnClick);
             
             //导入
             Submenu import = addInRoot.Items.AddSubmenu("导入");
             import.Items.AddActionItem<IEngineeringObject>("Xml数据", Import_OnClick);
-            import.Items.AddActionItem<PlcBlockGroup>("SIMATIC SD文件", Import_OnClick);
+            import.Items.AddActionItem<PlcBlockGroup,PlcTypeSystemGroup>("SIMATIC SD文件", Import_OnClick);
             
             //扩展工具
             Submenu tools = addInRoot.Items.AddSubmenu("工具");
@@ -144,7 +145,7 @@ namespace Kengic
         /// </summary>
         /// <param name="menuSelectionProvider"></param>
         /// <returns>.xml</returns>
-        private void Export_OnClick(MenuSelectionProvider<PlcBlock> menuSelectionProvider)
+        private void Export_OnClick(MenuSelectionProvider<PlcBlock,PlcType> menuSelectionProvider)
         {
 #if DEBUG
             System.Diagnostics.Debugger.Launch();
@@ -158,11 +159,11 @@ namespace Kengic
             
             try
             {
-                if (!Command.CanExportAsDocuments())
-                {
-                    feedback.Log(NotificationIcon.Error,"博途版本不支持，仅支持V20 Update3及以上版本");
-                    return;
-                }
+                // if (!Command.CanExportAsDocuments())
+                // {
+                //     feedback.Log(NotificationIcon.Error,"博途版本不支持，仅支持V20 Update3及以上版本");
+                //     return;
+                // }
                 
                 //创建独占窗口
                 using (ExclusiveAccess exclusiveAccess = _tiaPortal.ExclusiveAccess("将程序块导出为文档"))
@@ -176,9 +177,10 @@ namespace Kengic
                     {
                         feedback.Log(NotificationIcon.Information, $"打开窗口获取文档文件的保存路径:{dialog.SelectedPath}");
 
-                        string files = "";
+                        string files   = "";
+                        string version = "";
                     
-                        foreach (PlcBlock plcBlock in menuSelectionProvider.GetSelection())
+                        foreach (IEngineeringObject iEngineeringObject in menuSelectionProvider.GetSelection())
                         {
                             //监听独占窗口取消按钮
                             if (exclusiveAccess.IsCancellationRequested)
@@ -188,21 +190,37 @@ namespace Kengic
                             }
                         
                             //查询名称是否包含“/”，如果包含替换更“_”
-                            string name = plcBlock.GetAttribute("Name").ToString().Replace();
+                            string name = iEngineeringObject.GetAttribute("Name").ToString().Replace();
 
                             //获取程序块类型
-                            string type = plcBlock.GetType().ToString().Split('.').Last();
+                            string type = iEngineeringObject.GetType().Name;
                             
-                            //获取程序块版本号
-                            string version = plcBlock.GetAttribute("HeaderVersion").ToString();
-            
+                            feedback.Log(NotificationIcon.Success,$"Type:{type}");
+                            
+                            if (type != "PlcStruct")
+                            {
+                                //获取程序块版本号
+                                version = $"+v{iEngineeringObject.GetAttribute("HeaderVersion")}";
+                            }
+                            
                             //创建文件路径
                             string path     = dialog.SelectedPath;
-                            string filePath = Path.Combine(path, $"{type}+{name}+v{version}.s7dcl");
+                            string filePath = Path.Combine(path, $"{type}+{name}{version}.s7dcl");
             
-                            //导出程序块
-                            exclusiveAccess.Text = $"正在导出： [{type}]{name}v{version}";
-                            plcBlock.ExportInfo(filePath);
+                            //导出程序
+                            exclusiveAccess.Text = $"正在导出： [{type}]{name}{version}";
+                            
+                            switch (iEngineeringObject)
+                            {
+                                //导出程序块
+                                case PlcBlock plcBlock:
+                                    plcBlock.ExportInfo(filePath);
+                                    break;
+                                //导出用户数据类型
+                                case PlcType plcType:
+                                    plcType.ExportInfo(filePath);
+                                    break;
+                            }
                             
                             feedback.Log(NotificationIcon.Information, $"已导出");
                             
@@ -601,7 +619,7 @@ namespace Kengic
         /// 程序块导入
         /// </summary>
         /// <param name="menuSelectionProvider"></param>
-        private void Import_OnClick(MenuSelectionProvider<PlcBlockGroup> menuSelectionProvider)
+        private void Import_OnClick(MenuSelectionProvider<PlcBlockGroup,PlcTypeSystemGroup> menuSelectionProvider)
         {
 #if DEBUG
             System.Diagnostics.Debugger.Launch();
@@ -615,11 +633,11 @@ namespace Kengic
             
             try
             { 
-                if (!Command.CanExportAsDocuments())
-                {
-                    feedback.Log(NotificationIcon.Error,"博途版本不支持，仅支持V20 Update3及以上版本");
-                    return;
-                }
+                // if (!Command.CanExportAsDocuments())
+                // {
+                //     feedback.Log(NotificationIcon.Error,"博途版本不支持，仅支持V20 Update3及以上版本");
+                //     return;
+                // }
                 
                 //创建独占窗口
                 using (ExclusiveAccess exclusiveAccess = _tiaPortal.ExclusiveAccess("导入文件"))
@@ -649,8 +667,7 @@ namespace Kengic
                         //创建撤回撤销事务
                         using (Transaction transaction = exclusiveAccess.Transaction(projectBase, "从文档导入程序块"))
                         {
-                            foreach (PlcBlockGroup plcBlockGroup in
-                                     menuSelectionProvider.GetSelection())
+                            foreach (IEngineeringObject iEngineeringObject in menuSelectionProvider.GetSelection())
                             {
                                 //监听独占窗口取消按钮
                                 if (exclusiveAccess.IsCancellationRequested)
@@ -663,16 +680,28 @@ namespace Kengic
                                 foreach (string fileName in dialog.FileNames)
                                 {
                                     exclusiveAccess.Text = $"正在导入： {fileName}";
-                                    //iEngineeringCompositionOrObject.ImportInfo(fileName);
                                     //获取文件路径
                                     string directory = Path.GetDirectoryName(fileName);
                                     if (directory == null)
                                         return;
                                     //获取文件无后缀名称
                                     string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(fileName);
-
-                                    plcBlockGroup.Blocks.ImportFromDocuments(new DirectoryInfo(directory), fileNameWithoutExtension,
-                                        ImportDocumentOptions.Override);
+                                    
+                                    switch (iEngineeringObject)
+                                    {
+                                        //导入程序块
+                                        case PlcBlockGroup plcBlockGroup:
+                                            plcBlockGroup.Blocks.ImportFromDocuments(new DirectoryInfo(directory),
+                                                fileNameWithoutExtension,
+                                                ImportDocumentOptions.Override);
+                                            break;
+                                        //导入用户数据类型
+                                        case PlcTypeSystemGroup plcTypeSystemGroup:
+                                            plcTypeSystemGroup.Types.ImportFromDocuments(new DirectoryInfo(directory),
+                                                fileNameWithoutExtension,
+                                                ImportDocumentOptions.Override);
+                                            break;
+                                    }
                                     
                                     feedback.Log(NotificationIcon.Information, $"已导入:{fileName}");
                                 }
