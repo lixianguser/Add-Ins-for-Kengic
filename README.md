@@ -1,7 +1,7 @@
 # Add-Ins for Kengic
 
 
-[![](https://img.shields.io/badge/release-v18.1-blue)](https://github.com/lixianguser/Add-Ins-for-Kengic/releases/tag/v18.1) [![](https://img.shields.io/badge/release-v20.1-blue)](https://github.com/lixianguser/Add-Ins-for-Kengic/releases/tag/v20.1)
+[![](https://img.shields.io/badge/release-v18.1-blue)](https://github.com/lixianguser/Add-Ins-for-Kengic/releases/tag/v18.1) [![](https://img.shields.io/badge/release-v20.2.0-blue)](https://github.com/lixianguser/Add-Ins-for-Kengic/releases/tag/v20.2.0)
 
 科捷智能公司内部使用的西门子博途插件，旨在提高程序设计效率。
 
