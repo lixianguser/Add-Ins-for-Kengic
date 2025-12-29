@@ -253,7 +253,7 @@ namespace Kengic
         /// </summary>
         /// <param name="plcBlock">程序块</param>
         /// <param name="exportPath">导出路径</param>
-        public static void ExportInfo(this PlcBlock plcBlock,string exportPath)
+        public static void ExportInfoDoc(this PlcBlock plcBlock,string exportPath)
         {
             if (plcBlock.ProgrammingLanguage == ProgrammingLanguage.ProDiag_OB)
                 return;
@@ -294,7 +294,7 @@ namespace Kengic
         /// </summary>
         /// <param name="plcType">用户数据类型</param>
         /// <param name="exportPath">导出路径</param>
-        public static void ExportInfo(this PlcType plcType,string exportPath)
+        public static void ExportInfoDoc(this PlcType plcType,string exportPath)
         {
             //获取文件路径
             string directory = Path.GetDirectoryName(exportPath);

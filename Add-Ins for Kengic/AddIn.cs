@@ -214,11 +214,11 @@ namespace Kengic
                             {
                                 //导出程序块
                                 case PlcBlock plcBlock:
-                                    plcBlock.ExportInfo(filePath);
+                                    plcBlock.ExportInfoDoc(filePath);
                                     break;
                                 //导出用户数据类型
                                 case PlcType plcType:
-                                    plcType.ExportInfo(filePath);
+                                    plcType.ExportInfoDoc(filePath);
                                     break;
                             }
                             
