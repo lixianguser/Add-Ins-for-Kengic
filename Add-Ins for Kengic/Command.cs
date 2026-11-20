@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Siemens.Engineering;
+using Siemens.Engineering.AddIn;
 using Siemens.Engineering.Hmi;
 using Siemens.Engineering.Hmi.Communication;
 using Siemens.Engineering.Hmi.Cycle;
@@ -21,7 +22,7 @@ using Siemens.Engineering.SW.Tags;
 using Siemens.Engineering.SW.Types;
 using Siemens.Engineering.SW.WatchAndForceTables;
 using Screen = Siemens.Engineering.Hmi.Screen.Screen;
-using MessageBox = Siemens.Engineering.AddIn.MessageBox;
+using MessageBox = Siemens.Engineering.AddIn.MessageBoxProvider;
 using Microsoft.Win32;
 
 namespace Kengic
@@ -54,30 +55,30 @@ namespace Kengic
         /// 获取V20版本是否Update3及以上版本程序块可以导出成SIMATIC SD文件
         /// </summary>
         /// <returns></returns>
-        public static bool CanExportAsDocuments()
-        {
-            string keyPath       = @"HKEY_LOCAL_MACHINE\SOFTWARE\Siemens\Automation\_InstalledSW\TIAP20\TIA_Opns";
-            string versionString = (string)Registry.GetValue(keyPath, "VersionString", null);
+        // public static bool CanExportAsDocuments()
+        // {
+        //     string keyPath = @"HKEY_LOCAL_MACHINE\SOFTWARE\Siemens\Automation\_InstalledSW\TIAP21\TIA_Opns";
+        //     string versionString = (string)Registry.GetValue(keyPath, "VersionString", null);
 
-            if (versionString != null)
-            {
-                // 正则提取最后一段版本号
-                Match match = Regex.Match(versionString, @"V\d+\.\d+\.\d+\.(\d+)");
-                if (match.Success && int.TryParse(match.Groups[1].Value, out int buildNumber))
-                {
-                    if (buildNumber >= 3)
-                    {
-                        return true;
-                    }
-                }
-                else
-                {
-                    return false;
-                }
-            }
+        //     if (versionString != null)
+        //     {
+        //         // 正则提取最后一段版本号
+        //         Match match = Regex.Match(versionString, @"V\d+\.\d+\.\d+\.(\d+)");
+        //         if (match.Success && int.TryParse(match.Groups[1].Value, out int buildNumber))
+        //         {
+        //             if (buildNumber >= 3)
+        //             {
+        //                 return true;
+        //             }
+        //         }
+        //         else
+        //         {
+        //             return false;
+        //         }
+        //     }
 
-            return false;
-        }
+        //     return false;
+        // }
 
         /// <summary>
         /// 导出程序为xml文件📃
@@ -94,36 +95,36 @@ namespace Kengic
             {
                 //导出程序块
                 case PlcBlock item:
-                {
-                    if (item.ProgrammingLanguage == ProgrammingLanguage.ProDiag_OB)
-                        return;
-
-                    if (item.ProgrammingLanguage == ProgrammingLanguage.ProDiag)
                     {
-                        DirectoryInfo directoryInfo =
-                            new DirectoryInfo(Path.GetDirectoryName(exportPath) ?? string.Empty);
-                        ((FB)item).ExportProDIAGInfo(directoryInfo);
-                        return;
-                    }
+                        if (item.ProgrammingLanguage == ProgrammingLanguage.ProDiag_OB)
+                            return;
 
-                    if (item.IsConsistent) //编译的结果
-                    {
-                        //删除已存在的文件
-                        if (File.Exists(exportPath))
+                        if (item.ProgrammingLanguage == ProgrammingLanguage.ProDiag)
                         {
-                            File.Delete(exportPath);
+                            DirectoryInfo directoryInfo =
+                                new DirectoryInfo(Path.GetDirectoryName(exportPath) ?? string.Empty);
+                            ((FB)item).ExportProDIAGInfo(directoryInfo);
+                            return;
                         }
 
-                        //导出程序块
-                        item.Export(new FileInfo(exportPath), exportOption);
-                    }
-                    else
-                    {
-                        throw new ArgumentException("目标未编译");
-                    }
+                        if (item.IsConsistent) //编译的结果
+                        {
+                            //删除已存在的文件
+                            if (File.Exists(exportPath))
+                            {
+                                File.Delete(exportPath);
+                            }
 
-                    break;
-                }
+                            //导出程序块
+                            item.Export(new FileInfo(exportPath), exportOption);
+                        }
+                        else
+                        {
+                            throw new ArgumentException("目标未编译");
+                        }
+
+                        break;
+                    }
                 case PlcTagTable _:
                 case PlcType _:
                 case ScreenOverview _:
@@ -140,22 +141,22 @@ namespace Kengic
                 case ScreenPopup _:
                 case ScreenSlidein _:
                 case PlcWatchTable _:
-                {
-                    //删除已存在的文件
-                    if (File.Exists(exportPath))
                     {
-                        File.Delete(exportPath);
-                    }
+                        //删除已存在的文件
+                        if (File.Exists(exportPath))
+                        {
+                            File.Delete(exportPath);
+                        }
 
-                    //导出程序块
-                    var parameter = new Dictionary<Type, object>
+                        //导出程序块
+                        var parameter = new Dictionary<Type, object>
                     {
                         { typeof(FileInfo), new FileInfo(exportPath) },
                         { typeof(ExportOptions), exportOption }
                     };
-                    exportItem.Invoke("Export", parameter);
-                    break;
-                }
+                        exportItem.Invoke("Export", parameter);
+                        break;
+                    }
                 case PlcExternalSource _:
 
                     break;
@@ -253,29 +254,29 @@ namespace Kengic
         /// </summary>
         /// <param name="plcBlock">程序块</param>
         /// <param name="exportPath">导出路径</param>
-        public static void ExportInfoDoc(this PlcBlock plcBlock,string exportPath)
+        public static void ExportInfoDoc(this PlcBlock plcBlock, string exportPath)
         {
             if (plcBlock.ProgrammingLanguage == ProgrammingLanguage.ProDiag_OB)
                 return;
 
             if (plcBlock.ProgrammingLanguage == ProgrammingLanguage.ProDiag)
                 return;
-            
+
             //获取文件路径
             string directory = Path.GetDirectoryName(exportPath);
             if (directory == null)
                 return;
-            
+
             //获取文件无后缀名称
             string fileName = Path.GetFileNameWithoutExtension(exportPath);
-            
+
             //删除已存在的文件
             string s7dcl = Path.Combine(directory, $"{fileName}.s7dcl");
             if (File.Exists(s7dcl))
             {
                 File.Delete(s7dcl);
             }
-            
+
             //删除已存在的文件
             string s7res = Path.Combine(directory, $"{fileName}.s7res");
             if (File.Exists(s7res))
@@ -288,29 +289,29 @@ namespace Kengic
                 plcBlock.ExportAsDocuments(new DirectoryInfo(directory), fileName);
             }
         }
-        
+
         /// <summary>
         /// 将 UDT 导出为文档
         /// </summary>
         /// <param name="plcType">用户数据类型</param>
         /// <param name="exportPath">导出路径</param>
-        public static void ExportInfoDoc(this PlcType plcType,string exportPath)
+        public static void ExportInfoDoc(this PlcType plcType, string exportPath)
         {
             //获取文件路径
             string directory = Path.GetDirectoryName(exportPath);
             if (directory == null)
                 return;
-            
+
             //获取文件无后缀名称
             string fileName = Path.GetFileNameWithoutExtension(exportPath);
-            
+
             //删除已存在的文件
             string s7dcl = Path.Combine(directory, $"{fileName}.s7dcl");
             if (File.Exists(s7dcl))
             {
                 File.Delete(s7dcl);
             }
-            
+
             //删除已存在的文件
             string s7res = Path.Combine(directory, $"{fileName}.s7res");
             if (File.Exists(s7res))
@@ -360,7 +361,7 @@ namespace Kengic
         /// <param name="filePath">导入xml文件的路径</param>
         public static void ImportInfo(this IEngineeringCompositionOrObject destination, string filePath)
         {
-            FileInfo            fileInfo     = new FileInfo(filePath);
+            FileInfo fileInfo = new FileInfo(filePath);
             const ImportOptions importOption = ImportOptions.Override;
             filePath = fileInfo.FullName;
 
@@ -371,37 +372,37 @@ namespace Kengic
                 case MultiLingualGraphicComposition _:
                 case GraphicListComposition _:
                 case TextListComposition _:
-                {
-                    var parameter = new Dictionary<Type, object>
+                    {
+                        var parameter = new Dictionary<Type, object>
                     {
                         { typeof(string), filePath },
                         { typeof(ImportOptions), importOption }
                     };
-                    //导入xml文件
-                    ((IEngineeringComposition)destination).Invoke("Import", parameter);
-                    break;
-                }
+                        //导入xml文件
+                        ((IEngineeringComposition)destination).Invoke("Import", parameter);
+                        break;
+                    }
                 case PlcBlockGroup group when Path.GetExtension(filePath).Equals(".xml"):
                     group.Blocks.Import(fileInfo, importOption);
                     break;
                 case PlcBlockGroup group:
-                {
-                    IEngineeringObject currentDestination = group;
-                    while (!(currentDestination is PlcSoftware))
                     {
-                        currentDestination = currentDestination.Parent;
+                        IEngineeringObject currentDestination = group;
+                        while (!(currentDestination is PlcSoftware))
+                        {
+                            currentDestination = currentDestination.Parent;
+                        }
+
+                        PlcExternalSourceComposition col = (currentDestination as PlcSoftware).ExternalSourceGroup
+                            .ExternalSources;
+
+                        string sourceName = Path.GetRandomFileName();
+                        sourceName = Path.ChangeExtension(sourceName, ".src");
+                        PlcExternalSource src = col.CreateFromFile(sourceName, filePath);
+                        src.GenerateBlocksFromSource();
+                        src.Delete();
+                        break;
                     }
-
-                    PlcExternalSourceComposition col = (currentDestination as PlcSoftware).ExternalSourceGroup
-                        .ExternalSources;
-
-                    string sourceName = Path.GetRandomFileName();
-                    sourceName = Path.ChangeExtension(sourceName, ".src");
-                    PlcExternalSource src = col.CreateFromFile(sourceName, filePath);
-                    src.GenerateBlocksFromSource();
-                    src.Delete();
-                    break;
-                }
                 case PlcTagTableGroup group:
                     group.TagTables.Import(fileInfo, importOption);
                     break;
@@ -409,12 +410,12 @@ namespace Kengic
                     group.Types.Import(fileInfo, importOption);
                     break;
                 case PlcExternalSourceGroup group:
-                {
-                    PlcExternalSource temp = group.ExternalSources.Find(Path.GetFileName(filePath));
-                    temp?.Delete();
-                    group.ExternalSources.CreateFromFile(Path.GetFileName(filePath), filePath);
-                    break;
-                }
+                    {
+                        PlcExternalSource temp = group.ExternalSources.Find(Path.GetFileName(filePath));
+                        temp?.Delete();
+                        group.ExternalSources.CreateFromFile(Path.GetFileName(filePath), filePath);
+                        break;
+                    }
                 case TagFolder folder:
                     folder.TagTables.Import(fileInfo, importOption);
                     break;
@@ -484,7 +485,7 @@ namespace Kengic
             foreach (IEngineeringObject engineeringObject in menuSelectionProvider)
             {
                 IEngineeringObject parent = engineeringObject.Parent;
-                while (!(parent is PlcSoftware))
+                while (parent != null && !(parent is PlcSoftware))//保护不进死循环
                 {
                     parent = parent.Parent;
                 }
@@ -508,8 +509,8 @@ namespace Kengic
                 SoftwareContainer softwareContainer = deviceItem.GetService<SoftwareContainer>();
                 if (softwareContainer != null)
                 {
-                    Software  softwareBase = softwareContainer.Software;
-                    HmiTarget hmiTarget    = softwareBase as HmiTarget;
+                    Software softwareBase = softwareContainer.Software;
+                    HmiTarget hmiTarget = softwareBase as HmiTarget;
                     return hmiTarget;
                 }
             }
@@ -527,8 +528,8 @@ namespace Kengic
             SoftwareContainer softwareContainer = deviceItem.GetService<SoftwareContainer>();
             if (softwareContainer != null)
             {
-                Software    softwareBase = softwareContainer.Software;
-                PlcSoftware plcSoftware  = softwareBase as PlcSoftware;
+                Software softwareBase = softwareContainer.Software;
+                PlcSoftware plcSoftware = softwareBase as PlcSoftware;
                 return plcSoftware;
             }
 
@@ -554,7 +555,7 @@ namespace Kengic
             foreach (Device device in project.UngroupedDevicesGroup.Devices)
                 yield return device;
         }
-        
+
         /// <summary>
         /// 遍历用户组中获取设备
         /// </summary>
@@ -629,7 +630,7 @@ namespace Kengic
             }
 
             string[] files = Directory.GetFiles(targetDir);
-            string[] dirs  = Directory.GetDirectories(targetDir);
+            string[] dirs = Directory.GetDirectories(targetDir);
 
             // 先删除所有文件
             foreach (string file in files)

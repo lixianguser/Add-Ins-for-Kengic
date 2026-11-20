@@ -8,6 +8,7 @@ using System.Xml;
 using NPOI.SS.UserModel;
 using Siemens.Engineering;
 using Siemens.Engineering.AddIn;
+using Siemens.Engineering.AddIn.Base;
 using Siemens.Engineering.AddIn.Menu;
 using Siemens.Engineering.Hmi;
 using Siemens.Engineering.Hmi.Tag;
@@ -15,33 +16,33 @@ using Siemens.Engineering.HW;
 using Siemens.Engineering.SW;
 using Siemens.Engineering.SW.Blocks;
 using Siemens.Engineering.SW.Types;
-using MessageBox = Siemens.Engineering.AddIn.MessageBox;
+using MessageBox = Siemens.Engineering.AddIn.MessageBoxProvider;
 
 namespace Kengic
 {
     public class AddIn : ContextMenuAddIn
     {
-        private readonly TiaPortal   _tiaPortal;
+        private readonly TiaPortal _tiaPortal;
 
         public AddIn(TiaPortal tiaPortal) : base("Add-Ins")
         {
-            _tiaPortal  = tiaPortal;
+            _tiaPortal = tiaPortal;
         }
-        
+
         protected override void BuildContextMenuItems(ContextMenuAddInRoot addInRoot)
         {
             //导出
             Submenu export = addInRoot.Items.AddSubmenu("导出");
             export.Items.AddActionItem<IEngineeringObject>("Xml数据", Export_OnClick);
-            export.Items.AddActionItem<PlcBlock,PlcType>("SIMATIC SD文件", Export_OnClick);
+            export.Items.AddActionItem<PlcBlock, PlcType>("SIMATIC SD文件", Export_OnClick);
             export.Items.AddActionItem<GlobalDB>("WCS接口", Export_OnClick);
             export.Items.AddActionItem<InstanceDB>("SCADA接口", Export_OnClick);
-            
+
             //导入
             Submenu import = addInRoot.Items.AddSubmenu("导入");
             import.Items.AddActionItem<IEngineeringObject>("Xml数据", Import_OnClick);
-            import.Items.AddActionItem<PlcBlockGroup,PlcTypeSystemGroup>("SIMATIC SD文件", Import_OnClick);
-            
+            import.Items.AddActionItem<PlcBlockGroup, PlcTypeSystemGroup>("SIMATIC SD文件", Import_OnClick);
+
             //扩展工具
             Submenu tools = addInRoot.Items.AddSubmenu("工具");
             tools.Items.AddActionItem<PlcBlock>("自动编号", Number_OnClick);
@@ -67,12 +68,12 @@ namespace Kengic
             System.Diagnostics.Debugger.Launch();
 #endif
             //反馈API
-            FeedbackContext feedback = _tiaPortal.GetFeedbackContext();
-            feedback.Log(NotificationIcon.Information,"<导出Xml数据>");
-            
+            FeedbackProvider feedback = _tiaPortal.GetService<FeedbackProvider>();
+            feedback.Log(NotificationIcon.Information, "<导出Xml数据>");
+
             //MessageBox API
-            MessageBox messageBox = _tiaPortal.GetMessageBox();
-            
+            MessageBox messageBox = _tiaPortal.GetService<MessageBoxProvider>();
+
             try
             {
                 //创建独占窗口
@@ -82,13 +83,13 @@ namespace Kengic
                     FolderBrowserDialog dialog = new FolderBrowserDialog();
                     dialog.Description = "请选择导出文件的保存路径";
 
-                    if (dialog.ShowDialog(new Form() 
-                            { TopMost = true, WindowState = FormWindowState.Maximized }) == DialogResult.OK)
+                    if (dialog.ShowDialog(new Form()
+                    { TopMost = true, WindowState = FormWindowState.Maximized }) == DialogResult.OK)
                     {
                         feedback.Log(NotificationIcon.Information, $"打开窗口获取.xml文件的保存路径:{dialog.SelectedPath}");
 
                         string files = "";
-                    
+
                         foreach (IEngineeringObject iEngineeringObject in menuSelectionProvider.GetSelection())
                         {
                             //监听独占窗口取消按钮
@@ -97,66 +98,66 @@ namespace Kengic
                                 feedback.Log(NotificationIcon.Error, $"监听独占窗口取消");
                                 break;
                             }
-                        
+
                             //查询名称是否包含“/”，如果包含替换更“_”
                             string name = iEngineeringObject.GetAttribute("Name").ToString().Replace();
 
                             //获取程序块类型
                             string type = iEngineeringObject.GetType().ToString().Split('.').Last();
-                            
+
                             //获取程序块版本号
                             string version = iEngineeringObject.GetAttribute("HeaderVersion").ToString();
-            
+
                             //创建文件路径
-                            string path     = dialog.SelectedPath;
+                            string path = dialog.SelectedPath;
                             string filePath = Path.Combine(path, $"{type}+{name}+v{version}.xml");
-            
+
                             //导出程序块
                             exclusiveAccess.Text = $"正在导出： [{type}]{name}v{version}";
                             iEngineeringObject.ExportInfo(filePath);
                             feedback.Log(NotificationIcon.Information, $"已导出:{filePath}");
-                        
+
                             //设置导出的文件路径
                             files += filePath + "\r\n";
                         }
-                    
+
                         //导出完成
                         messageBox.ShowNotification(NotificationIcon.Success, "导出完成", "目标文件:", files);
-                        feedback.Log(NotificationIcon.Success,"<导出Xml数据>完成");
+                        feedback.Log(NotificationIcon.Success, "<导出Xml数据>完成");
                     }
                 }
             }
             catch (EngineeringException ex)
             {
                 messageBox.ShowException(ex);
-                feedback.Log(NotificationIcon.Error,ex.Message);
+                feedback.Log(NotificationIcon.Error, ex.Message);
                 throw;
             }
             catch (Exception ex)
             {
                 messageBox.ShowException(ex);
-                feedback.Log(NotificationIcon.Error,ex.Message);
+                feedback.Log(NotificationIcon.Error, ex.Message);
                 throw;
             }
         }
-        
+
         /// <summary>
         /// 导出程序块为SIMATIC SD文件
         /// </summary>
         /// <param name="menuSelectionProvider"></param>
         /// <returns>.xml</returns>
-        private void Export_OnClick(MenuSelectionProvider<PlcBlock,PlcType> menuSelectionProvider)
+        private void Export_OnClick(MenuSelectionProvider<PlcBlock, PlcType> menuSelectionProvider)
         {
 #if DEBUG
             System.Diagnostics.Debugger.Launch();
 #endif
             //反馈API
-            FeedbackContext feedback = _tiaPortal.GetFeedbackContext();
-            feedback.Log(NotificationIcon.Information,"<将程序块导出为文档>");
-            
+            FeedbackProvider feedback = _tiaPortal.GetService<FeedbackProvider>();
+            feedback.Log(NotificationIcon.Information, "<将程序块导出为文档>");
+
             //MessageBox API
-            MessageBox messageBox = _tiaPortal.GetMessageBox();
-            
+            MessageBox messageBox = _tiaPortal.GetService<MessageBoxProvider>();
+
             try
             {
                 // if (!Command.CanExportAsDocuments())
@@ -164,7 +165,7 @@ namespace Kengic
                 //     feedback.Log(NotificationIcon.Error,"博途版本不支持，仅支持V20 Update3及以上版本");
                 //     return;
                 // }
-                
+
                 //创建独占窗口
                 using (ExclusiveAccess exclusiveAccess = _tiaPortal.ExclusiveAccess("将程序块导出为文档"))
                 {
@@ -172,14 +173,14 @@ namespace Kengic
                     FolderBrowserDialog dialog = new FolderBrowserDialog();
                     dialog.Description = "请选择导出文件的保存路径";
 
-                    if (dialog.ShowDialog(new Form() 
-                            { TopMost = true, WindowState = FormWindowState.Maximized }) == DialogResult.OK)
+                    if (dialog.ShowDialog(new Form()
+                    { TopMost = true, WindowState = FormWindowState.Maximized }) == DialogResult.OK)
                     {
                         feedback.Log(NotificationIcon.Information, $"打开窗口获取文档文件的保存路径:{dialog.SelectedPath}");
 
-                        string files   = "";
+                        string files = "";
                         string version = "";
-                    
+
                         foreach (IEngineeringObject iEngineeringObject in menuSelectionProvider.GetSelection())
                         {
                             //监听独占窗口取消按钮
@@ -188,28 +189,28 @@ namespace Kengic
                                 feedback.Log(NotificationIcon.Error, $"监听独占窗口取消");
                                 break;
                             }
-                        
+
                             //查询名称是否包含“/”，如果包含替换更“_”
                             string name = iEngineeringObject.GetAttribute("Name").ToString().Replace();
 
                             //获取程序块类型
                             string type = iEngineeringObject.GetType().Name;
-                            
-                            feedback.Log(NotificationIcon.Success,$"Type:{type}");
-                            
+
+                            feedback.Log(NotificationIcon.Success, $"Type:{type}");
+
                             if (type != "PlcStruct")
                             {
                                 //获取程序块版本号
                                 version = $"+v{iEngineeringObject.GetAttribute("HeaderVersion")}";
                             }
-                            
+
                             //创建文件路径
-                            string path     = dialog.SelectedPath;
+                            string path = dialog.SelectedPath;
                             string filePath = Path.Combine(path, $"{type}+{name}{version}.s7dcl");
-            
+
                             //导出程序
                             exclusiveAccess.Text = $"正在导出： [{type}]{name}{version}";
-                            
+
                             switch (iEngineeringObject)
                             {
                                 //导出程序块
@@ -221,33 +222,33 @@ namespace Kengic
                                     plcType.ExportInfoDoc(filePath);
                                     break;
                             }
-                            
+
                             feedback.Log(NotificationIcon.Information, $"已导出");
-                            
+
                             //设置导出的文件路径
                             files += filePath + "\r\n";
                         }
-                    
+
                         //导出完成
                         messageBox.ShowNotification(NotificationIcon.Success, "导出完成", "目标文件:", files);
-                        feedback.Log(NotificationIcon.Success,"<将程序块导出为文档>完成");
+                        feedback.Log(NotificationIcon.Success, "<将程序块导出为文档>完成");
                     }
                 }
             }
             catch (EngineeringException ex)
             {
                 messageBox.ShowException(ex);
-                feedback.Log(NotificationIcon.Error,ex.Message);
+                feedback.Log(NotificationIcon.Error, ex.Message);
                 throw;
             }
             catch (Exception ex)
             {
                 messageBox.ShowException(ex);
-                feedback.Log(NotificationIcon.Error,ex.Message);
+                feedback.Log(NotificationIcon.Error, ex.Message);
                 throw;
             }
         }
-        
+
         /// <summary>
         /// 导出WCS接口
         /// </summary>
@@ -259,12 +260,12 @@ namespace Kengic
             System.Diagnostics.Debugger.Launch();
 #endif
             //反馈API
-            FeedbackContext feedback  = _tiaPortal.GetFeedbackContext();
-            feedback.Log(NotificationIcon.Information,"<导出WCS接口>");
-            
+            FeedbackProvider feedback = _tiaPortal.GetService<FeedbackProvider>();
+            feedback.Log(NotificationIcon.Information, "<导出WCS接口>");
+
             //MessageBox API
-            MessageBox messageBox = _tiaPortal.GetMessageBox();
-            
+            MessageBox messageBox = _tiaPortal.GetService<MessageBoxProvider>();
+
             string directory = null;//导出.xml的文件路径
 
             try
@@ -273,11 +274,11 @@ namespace Kengic
                 SaveFileDialog dialog = new SaveFileDialog
                 {
                     Filter = "逗号分隔值|*.csv",
-                    Title  = "请选择保存文件的路径"
+                    Title = "请选择保存文件的路径"
                 };
-                
+
                 if (dialog.ShowDialog(new Form()
-                        { TopMost = true, WindowState = FormWindowState.Maximized }) == DialogResult.OK)
+                { TopMost = true, WindowState = FormWindowState.Maximized }) == DialogResult.OK)
                 {
                     //获取.csv文件路径
                     string path = dialog.FileName;//.csv文件保存路径
@@ -286,7 +287,7 @@ namespace Kengic
                         throw new FileNotFoundException("文件保存路径未知错误");
                     }
                     feedback.Log(NotificationIcon.Information, $"打开窗口获取.csv文件的保存路径:{path}");
-                    
+
                     //创建导出DB.xml的文件夹路径
                     string dir = Path.GetDirectoryName(path);//获取.csv文件所在文件夹路径
                     if (dir == null)
@@ -298,8 +299,8 @@ namespace Kengic
                     {
                         Directory.CreateDirectory(directory);
                     }
-                    feedback.Log(NotificationIcon.Information,$"创建导出DB.xml的文件夹路径:{directory}");
-                    
+                    feedback.Log(NotificationIcon.Information, $"创建导出DB.xml的文件夹路径:{directory}");
+
                     //创建独占窗口
                     using (ExclusiveAccess exclusiveAccess = _tiaPortal.ExclusiveAccess("导出WCS接口"))
                     {
@@ -307,7 +308,7 @@ namespace Kengic
                         StreamWriter streamWriter = new StreamWriter(path);
                         //创建标题行
                         streamWriter.WriteLine("\"输送机编号\",\"变量名\",\"类型\",\"DB\",\"开始地址\",\"DB名称\"");
-                        
+
                         foreach (GlobalDB globalDb in menuSelectionProvider.GetSelection())
                         {
                             //监听独占窗口取消按钮
@@ -316,64 +317,67 @@ namespace Kengic
                                 feedback.Log(NotificationIcon.Error, $"监听独占窗口取消");
                                 break;
                             }
-                            
+
                             //获取DB的信息
-                            string name                = globalDb.Name;// 获取 GlobalDB 名称
-                            string number              = globalDb.Number.ToString();//获取编号
+                            string name = globalDb.Name;// 获取 GlobalDB 名称
+                            string number = globalDb.Number.ToString();//获取编号
                             string programmingLanguage = globalDb.ProgrammingLanguage.ToString();//获取程序语言
-                            
+
                             if (Directory.Exists(directory))
                             {
                                 //创建文件路径
                                 string filePath = Path.Combine(directory, $"{name.Replace()}.xml");
-            
+
                                 //导出程序块
                                 globalDb.ExportInfo(filePath);
-                                feedback.Log(NotificationIcon.Information,$"已导出：{filePath}");
-                                
+                                feedback.Log(NotificationIcon.Information, $"已导出：{filePath}");
+
                                 //写入StreamWriter
                                 WCS wcs = new WCS
                                 {
-                                    FilePath       = filePath,
+                                    FilePath = filePath,
                                     ProgrammingLanguage = programmingLanguage,
-                                    Number              = number,
-                                    InstanceName        = name,
-                                    StreamWriter        = streamWriter
+                                    Number = number,
+                                    InstanceName = name,
+                                    StreamWriter = streamWriter
                                 };
-                                
+
                                 wcs.Run();
-                                
-                                feedback.Log(NotificationIcon.Information,$"已处理：{name}[{programmingLanguage}{number}]");
+
+                                feedback.Log(NotificationIcon.Information, $"已处理：{name}[{programmingLanguage}{number}]");
                             }
                         }
-                        
+
                         streamWriter.Close();
                     }
-                    
+
                     //导出完成
-                    messageBox.ShowNotification(NotificationIcon.Success,"导出完成",$"目标文件:{path}");
-                    feedback.Log(NotificationIcon.Success,"<导出WCS接口>完成");
+                    messageBox.ShowNotification(NotificationIcon.Success, "导出完成", $"目标文件:{path}");
+                    feedback.Log(NotificationIcon.Success, "<导出WCS接口>完成");
                 }
             }
             catch (EngineeringException ex)
             {
                 messageBox.ShowException(ex);
-                feedback.Log(NotificationIcon.Error,ex.Message);
+                feedback.Log(NotificationIcon.Error, ex.Message);
                 throw;
             }
             catch (Exception ex)
             {
                 messageBox.ShowException(ex);
-                feedback.Log(NotificationIcon.Error,ex.Message);
+                feedback.Log(NotificationIcon.Error, ex.Message);
                 throw;
             }
             finally
             {
-                directory.DeleteDirectoryAndContents();//删除导出的.xml文件的文件夹
-                feedback.Log(NotificationIcon.Information,$"已删除：{directory}文件夹");
+                if (directory != null && Directory.Exists(directory))
+                {
+                    Directory.Delete(directory, true);//删除导出的.xml文件的文件夹
+                }
+                feedback.Log(NotificationIcon.Information, $"已删除：{directory}文件夹");
             }
         }
-        
+
         /// <summary>
         /// 导出SCADA接口
         /// </summary>
@@ -385,12 +389,12 @@ namespace Kengic
             System.Diagnostics.Debugger.Launch();
 #endif
             //反馈API
-            FeedbackContext feedback = _tiaPortal.GetFeedbackContext();
-            feedback.Log(NotificationIcon.Information,"<导出SCADA接口>");
-            
+            FeedbackProvider feedback = _tiaPortal.GetService<FeedbackProvider>();
+            feedback.Log(NotificationIcon.Information, "<导出SCADA接口>");
+
             //MessageBox API
-            MessageBox messageBox = _tiaPortal.GetMessageBox();
-            
+            MessageBox messageBox = _tiaPortal.GetService<MessageBoxProvider>();
+
             string directory = null;//导出.xml的文件路径
 
             try
@@ -399,11 +403,11 @@ namespace Kengic
                 SaveFileDialog dialog = new SaveFileDialog
                 {
                     Filter = "逗号分隔值|*.csv",
-                    Title  = "请选择保存文件的路径"
+                    Title = "请选择保存文件的路径"
                 };
 
                 if (dialog.ShowDialog(new Form()
-                        { TopMost = true, WindowState = FormWindowState.Maximized }) == DialogResult.OK)
+                { TopMost = true, WindowState = FormWindowState.Maximized }) == DialogResult.OK)
                 {
                     //获取.csv文件路径
                     string path = dialog.FileName; //.csv文件保存路径
@@ -413,7 +417,7 @@ namespace Kengic
                     }
 
                     feedback.Log(NotificationIcon.Information, $"打开窗口获取.csv文件的保存路径:{path}");
-                    
+
                     //创建导出DB.xml的文件夹路径
                     string dir = Path.GetDirectoryName(path);//获取.csv文件所在文件夹路径
                     if (dir == null)
@@ -425,8 +429,8 @@ namespace Kengic
                     {
                         Directory.CreateDirectory(directory);
                     }
-                    feedback.Log(NotificationIcon.Information,$"创建导出程序块的.xml文件夹路径:{directory}");
-                    
+                    feedback.Log(NotificationIcon.Information, $"创建导出程序块的.xml文件夹路径:{directory}");
+
                     // 独占窗口
                     using (ExclusiveAccess exclusiveAccess = _tiaPortal.ExclusiveAccess("导出中……"))
                     {
@@ -443,11 +447,11 @@ namespace Kengic
                                 feedback.Log(NotificationIcon.Error, $"监听独占窗口取消");
                                 break;
                             }
-                            
+
                             //获取DB的信息
-                            string name                = instanceDb.Name;// 获取 InstanceDB 名称
-                            string instanceOfName      = instanceDb.InstanceOfName;//获取 InstanceDB 实例的名称
-                            string number              = instanceDb.Number.ToString();//获取编号
+                            string name = instanceDb.Name;// 获取 InstanceDB 名称
+                            string instanceOfName = instanceDb.InstanceOfName;//获取 InstanceDB 实例的名称
+                            string number = instanceDb.Number.ToString();//获取编号
                             string programmingLanguage = instanceDb.ProgrammingLanguage.ToString();//获取程序语言
 
                             if (Directory.Exists(directory))
@@ -455,12 +459,12 @@ namespace Kengic
                                 exclusiveAccess.Text = $"导出中:{name}";
                                 //创建InstanceDB文件路径
                                 string iDBFilePath = Path.Combine(directory, $"{name.Replace()}.xml");
-            
+
                                 //导出DB程序块
                                 instanceDb.ExportInfo(iDBFilePath);
-                                feedback.Log(NotificationIcon.Information,$"已导出：{iDBFilePath}");
-                                
-                                
+                                feedback.Log(NotificationIcon.Information, $"已导出：{iDBFilePath}");
+
+
                                 //创建FB文件路径
                                 string fBFilePath = Path.Combine(directory, $"{instanceOfName.Replace()}.xml");
 
@@ -472,34 +476,34 @@ namespace Kengic
                                     //导出FB程序块
                                     PlcSoftware plcSoftware = menuSelectionProvider.GetSelection().GetPlcSoftware();
                                     PlcBlockGroup plcBlockGroups = plcSoftware.BlockGroup;
-                                    plcBlockGroups.ExportInfo(instanceOfName,fBFilePath);
-                                    feedback.Log(NotificationIcon.Information,$"已导出：{fBFilePath}");
+                                    plcBlockGroups.ExportInfo(instanceOfName, fBFilePath);
+                                    feedback.Log(NotificationIcon.Information, $"已导出：{fBFilePath}");
                                 }
-                                
+
                                 //写入StreamWriter
                                 SCADA scada = new SCADA
                                 {
-                                    FBXmlFilePath       = fBFilePath,
-                                    IDbXmlFilePath      = iDBFilePath,
-                                    InstanceName        = name,
-                                    Number              = number,
+                                    FBXmlFilePath = fBFilePath,
+                                    IDbXmlFilePath = iDBFilePath,
+                                    InstanceName = name,
+                                    Number = number,
                                     ProgrammingLanguage = programmingLanguage,
-                                    InstanceOfName      = instanceOfName,
-                                    StreamWriter        = streamWriter
+                                    InstanceOfName = instanceOfName,
+                                    StreamWriter = streamWriter
                                 };
 
                                 scada.Run();
-                                
-                                feedback.Log(NotificationIcon.Information,$"已处理：{name}[{programmingLanguage}{number}]");
+
+                                feedback.Log(NotificationIcon.Information, $"已处理：{name}[{programmingLanguage}{number}]");
                             }
                         }
-                        
+
                         streamWriter.Close();
                     }
-                    
+
                     //导出完成
-                    messageBox.ShowNotification(NotificationIcon.Success,"导出完成",$"目标文件:{path}");
-                    feedback.Log(NotificationIcon.Success,"<导出SCADA接口>完成");
+                    messageBox.ShowNotification(NotificationIcon.Success, "导出完成", $"目标文件:{path}");
+                    feedback.Log(NotificationIcon.Success, "<导出SCADA接口>完成");
                 }
             }
             catch (EngineeringException ex)
@@ -510,16 +514,16 @@ namespace Kengic
             catch (Exception ex)
             {
                 messageBox.ShowException(ex);
-                feedback.Log(NotificationIcon.Error,ex.Message);
+                feedback.Log(NotificationIcon.Error, ex.Message);
                 throw;
             }
             finally
             {
                 directory.DeleteDirectoryAndContents();//删除导出的.xml文件的文件夹
-                feedback.Log(NotificationIcon.Information,$"已删除：{directory}文件夹");
+                feedback.Log(NotificationIcon.Information, $"已删除：{directory}文件夹");
             }
         }
-        
+
         /// <summary>
         /// 程序块导入
         /// </summary>
@@ -530,20 +534,20 @@ namespace Kengic
             System.Diagnostics.Debugger.Launch();
 #endif
             //反馈API
-            FeedbackContext feedback  = _tiaPortal.GetFeedbackContext();
-            feedback.Log(NotificationIcon.Information,"<导入Xml数据>");
-            
+            FeedbackProvider feedback = _tiaPortal.GetService<FeedbackProvider>();
+            feedback.Log(NotificationIcon.Information, "<导入Xml数据>");
+
             //MessageBox API
-            MessageBox messageBox = _tiaPortal.GetMessageBox();
-            
+            MessageBox messageBox = _tiaPortal.GetService<MessageBoxProvider>();
+
             try
-            { 
+            {
                 //创建独占窗口
                 using (ExclusiveAccess exclusiveAccess = _tiaPortal.ExclusiveAccess("导入Xml文件"))
                 {
                     //获取项目实例
                     ProjectBase projectBase = _tiaPortal.GetProjectBase();
-                    
+
                     //如果项目实例为空，抛出异常
                     if (projectBase == null)
                     {
@@ -554,13 +558,13 @@ namespace Kengic
                     OpenFileDialog dialog = new OpenFileDialog
                     {
                         Multiselect = true,
-                        Filter      = "xml File(*.xml)| *.xml",
+                        Filter = "xml File(*.xml)| *.xml",
                         Title = "请选择要导入的文件(可多选)"
                     };
 
                     //打开文件选择窗体
                     if (dialog.ShowDialog(new Form()
-                            { TopMost = true, WindowState = FormWindowState.Maximized }) == DialogResult.OK
+                    { TopMost = true, WindowState = FormWindowState.Maximized }) == DialogResult.OK
                         && !string.IsNullOrEmpty(dialog.FileName))
                     {
                         //创建撤回撤销事务
@@ -584,7 +588,7 @@ namespace Kengic
                                     feedback.Log(NotificationIcon.Information, $"已导入:{fileName}");
                                 }
                             }
-                            
+
                             //创建回滚
                             if (transaction.CanCommit)
                             {
@@ -593,58 +597,58 @@ namespace Kengic
                             }
                         }
                     }
-                    
+
                     //导入完成
-                    messageBox.ShowNotification(NotificationIcon.Success, "完成","导入Xml数据完成");
+                    messageBox.ShowNotification(NotificationIcon.Success, "完成", "导入Xml数据完成");
                     feedback.Log(NotificationIcon.Success, $"<导入Xml数据>完成");
                 }
-                
-                
+
+
             }
             catch (EngineeringException ex)
             {
                 messageBox.ShowException(ex);
-                feedback.Log(NotificationIcon.Error,ex.Message);
+                feedback.Log(NotificationIcon.Error, ex.Message);
                 throw;
             }
             catch (Exception ex)
             {
                 messageBox.ShowException(ex);
-                feedback.Log(NotificationIcon.Error,ex.Message);
+                feedback.Log(NotificationIcon.Error, ex.Message);
                 throw;
             }
         }
-        
+
         /// <summary>
         /// 程序块导入
         /// </summary>
         /// <param name="menuSelectionProvider"></param>
-        private void Import_OnClick(MenuSelectionProvider<PlcBlockGroup,PlcTypeSystemGroup> menuSelectionProvider)
+        private void Import_OnClick(MenuSelectionProvider<PlcBlockGroup, PlcTypeSystemGroup> menuSelectionProvider)
         {
 #if DEBUG
             System.Diagnostics.Debugger.Launch();
 #endif
             //反馈API
-            FeedbackContext feedback  = _tiaPortal.GetFeedbackContext();
-            feedback.Log(NotificationIcon.Information,"<从文档导入程序块>");
-            
+            FeedbackProvider feedback = _tiaPortal.GetService<FeedbackProvider>();
+            feedback.Log(NotificationIcon.Information, "<从文档导入程序块>");
+
             //MessageBox API
-            MessageBox messageBox = _tiaPortal.GetMessageBox();
-            
+            MessageBox messageBox = _tiaPortal.GetService<MessageBoxProvider>();
+
             try
-            { 
+            {
                 // if (!Command.CanExportAsDocuments())
                 // {
                 //     feedback.Log(NotificationIcon.Error,"博途版本不支持，仅支持V20 Update3及以上版本");
                 //     return;
                 // }
-                
+
                 //创建独占窗口
                 using (ExclusiveAccess exclusiveAccess = _tiaPortal.ExclusiveAccess("导入文件"))
                 {
                     //获取项目实例
                     ProjectBase projectBase = _tiaPortal.GetProjectBase();
-                    
+
                     //如果项目实例为空，抛出异常
                     if (projectBase == null)
                     {
@@ -655,13 +659,13 @@ namespace Kengic
                     OpenFileDialog dialog = new OpenFileDialog
                     {
                         Multiselect = true,
-                        Filter      = "s7dcl File(*.s7dcl)| *.s7dcl",
+                        Filter = "s7dcl File(*.s7dcl)| *.s7dcl",
                         Title = "请选择要导入的文件(可多选)"
                     };
 
                     //打开文件选择窗体
                     if (dialog.ShowDialog(new Form()
-                            { TopMost = true, WindowState = FormWindowState.Maximized }) == DialogResult.OK
+                    { TopMost = true, WindowState = FormWindowState.Maximized }) == DialogResult.OK
                         && !string.IsNullOrEmpty(dialog.FileName))
                     {
                         //创建撤回撤销事务
@@ -686,7 +690,7 @@ namespace Kengic
                                         return;
                                     //获取文件无后缀名称
                                     string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(fileName);
-                                    
+
                                     switch (iEngineeringObject)
                                     {
                                         //导入程序块
@@ -702,11 +706,11 @@ namespace Kengic
                                                 ImportDocumentOptions.Override);
                                             break;
                                     }
-                                    
+
                                     feedback.Log(NotificationIcon.Information, $"已导入:{fileName}");
                                 }
                             }
-                            
+
                             //创建回滚
                             if (transaction.CanCommit)
                             {
@@ -715,28 +719,28 @@ namespace Kengic
                             }
                         }
                     }
-                    
+
                     //导入完成
-                    messageBox.ShowNotification(NotificationIcon.Success, "完成","从文档导入程序块完成");
+                    messageBox.ShowNotification(NotificationIcon.Success, "完成", "从文档导入程序块完成");
                     feedback.Log(NotificationIcon.Success, $"从文档导入程序块完成");
                 }
-                
-                
+
+
             }
             catch (EngineeringException ex)
             {
                 messageBox.ShowException(ex);
-                feedback.Log(NotificationIcon.Error,ex.Message);
+                feedback.Log(NotificationIcon.Error, ex.Message);
                 throw;
             }
             catch (Exception ex)
             {
                 messageBox.ShowException(ex);
-                feedback.Log(NotificationIcon.Error,ex.Message);
+                feedback.Log(NotificationIcon.Error, ex.Message);
                 throw;
             }
         }
-        
+
         /// <summary>
         /// 自动编号
         /// </summary>
@@ -747,14 +751,14 @@ namespace Kengic
             System.Diagnostics.Debugger.Launch();
 #endif
             //反馈API
-            FeedbackContext feedback  = _tiaPortal.GetFeedbackContext();
-            feedback.Log(NotificationIcon.Information,"<自动编号>");
-            
+            FeedbackProvider feedback = _tiaPortal.GetService<FeedbackProvider>();
+            feedback.Log(NotificationIcon.Information, "<自动编号>");
+
             //MessageBox API
-            MessageBox messageBox = _tiaPortal.GetMessageBox();
+            MessageBox messageBox = _tiaPortal.GetService<MessageBoxProvider>();
 
             try
-            { 
+            {
                 //创建独占窗口
                 using (ExclusiveAccess exclusiveAccess = _tiaPortal.ExclusiveAccess("自动编号"))
                 {
@@ -764,14 +768,14 @@ namespace Kengic
                         return;
                     //获取输入信息
                     int startingNumber = numberForm.StartingNumber;
-                    int increment      = numberForm.Increment;
-                    feedback.Log(NotificationIcon.Information, 
+                    int increment = numberForm.Increment;
+                    feedback.Log(NotificationIcon.Information,
                         $"获取输入信息:起始编号{startingNumber},递增值{increment}");
 
                     ProjectBase projectBase = _tiaPortal.GetProjectBase();
-                    
+
                     //创建撤回撤销事务
-                    using (Transaction transaction = exclusiveAccess.Transaction(projectBase, 
+                    using (Transaction transaction = exclusiveAccess.Transaction(projectBase,
                                "自动编号"))
                     {
                         foreach (PlcBlock plcBlock in menuSelectionProvider.GetSelection())
@@ -780,16 +784,16 @@ namespace Kengic
                             if (exclusiveAccess.IsCancellationRequested)
                             {
                                 feedback.Log(NotificationIcon.Error, $"监听独占窗口取消");
-                                return; 
+                                return;
                             }
                             exclusiveAccess.Text = "正在编号:" + plcBlock.Name + "设置为 " + startingNumber;
-                            
+
                             //设置为手动编号
                             if (plcBlock.AutoNumber)
                             {
                                 plcBlock.AutoNumber = false;
                             }
-                            
+
                             //设置编号
                             if (plcBlock.Number != startingNumber)
                             {
@@ -807,24 +811,24 @@ namespace Kengic
                             feedback.Log(NotificationIcon.Information, "已创建回滚");
                         }
                     }
-                    
-                    feedback.Log(NotificationIcon.Success,"<自动编号>完成");
+
+                    feedback.Log(NotificationIcon.Success, "<自动编号>完成");
                 }
             }
             catch (EngineeringException ex)
             {
                 messageBox.ShowException(ex);
-                feedback.Log(NotificationIcon.Error,ex.Message);
+                feedback.Log(NotificationIcon.Error, ex.Message);
                 throw;
             }
             catch (Exception ex)
             {
                 messageBox.ShowException(ex);
-                feedback.Log(NotificationIcon.Error,ex.Message);
+                feedback.Log(NotificationIcon.Error, ex.Message);
                 throw;
             }
         }
-        
+
         /// <summary>
         /// 创建报警文本
         /// </summary>
@@ -834,14 +838,14 @@ namespace Kengic
 #if DEBUG
             Debugger.Launch();
 #endif
-            
+
             //反馈API
-            FeedbackContext feedback  = _tiaPortal.GetFeedbackContext();
-            feedback.Log(NotificationIcon.Information,"<创建触摸屏报警>");
-            
+            FeedbackProvider feedback = _tiaPortal.GetService<FeedbackProvider>();
+            feedback.Log(NotificationIcon.Information, "<创建触摸屏报警>");
+
             //MessageBox API
-            MessageBox messageBox = _tiaPortal.GetMessageBox();
-            
+            MessageBox messageBox = _tiaPortal.GetService<MessageBoxProvider>();
+
             string directory = null;//导出.xml的文件路径
 
             try
@@ -864,8 +868,8 @@ namespace Kengic
                 using (ExclusiveAccess exclusiveAccess = _tiaPortal.ExclusiveAccess("创建触摸屏报警"))
                 {
                     //获取项目
-                    ProjectBase projectBase   = _tiaPortal.GetProjectBase();
-                    
+                    ProjectBase projectBase = _tiaPortal.GetProjectBase();
+
                     using (Transaction transaction =
                            exclusiveAccess.Transaction(projectBase, "导入\"自动生成报警变量表\""))
                     {
@@ -880,7 +884,7 @@ namespace Kengic
                         {
                             return;
                         }
-                        
+
                         //选择保存文件的位置
                         FolderBrowserDialog dialog = new FolderBrowserDialog();
                         dialog.Description = "请选择导出文件的保存路径";
@@ -888,11 +892,11 @@ namespace Kengic
                         if (dialog.ShowDialog(new Form { TopMost = true, WindowState = FormWindowState.Maximized }) == DialogResult.OK)
                         {
                             //获取保存文件的位置
-                            string path     = dialog.SelectedPath;
+                            string path = dialog.SelectedPath;
                             directory = Path.Combine(path, ".temp");
                             string englishPath = $@"{path}\HMIAlarms-en_US.xlsx";
                             string chinesePath = $@"{path}\HMIAlarms-zh_CN.xlsx";
-                            
+
                             feedback.Log(NotificationIcon.Information, $"获取保存文件的位置:{path}");
 
                             foreach (DeviceItem deviceItem in menuSelectionProvider.GetSelection())
@@ -908,49 +912,49 @@ namespace Kengic
 
                                 //获取PLC目标
                                 PlcSoftware plcSoftware = deviceItem.GetPlcSoftware();
-                            
+
                                 //获取程序块组
                                 PlcBlockGroup plcBlockGroup = plcSoftware.BlockGroup;
-                                
+
                                 //导出InstanceDB和ProDiag
-                                plcBlockGroup.ExportInfo(directory,true);
+                                plcBlockGroup.ExportInfo(directory, true);
                                 feedback.Log(NotificationIcon.Information, $"已导出InstanceDB和ProDiag保存到{directory}");
 
                                 #endregion
 
                                 #region 获取报警文本
-                                
+
                                 //定义报警文本列表
                                 var proDiagInfos = new List<ProDiagInfo>();
-                                
+
                                 //查询文件夹路径是否存在
                                 if (Directory.Exists(directory))
                                 {
                                     //获取文件夹中所有的.csv文件
-                                    string[] files         = Directory.GetFiles(directory, "*.csv");
-                                    
+                                    string[] files = Directory.GetFiles(directory, "*.csv");
+
                                     //筛选出文件名包含"en-US"或"zh-CN"的.csv文件
-                                    var      filteredFiles = files.Where(file =>
+                                    var filteredFiles = files.Where(file =>
                                         Path.GetFileName(file).Contains("en-US") ||
                                         Path.GetFileName(file).Contains("zh-CN"));
-                                    
+
                                     //获取报警文本，并且添加到LIST<ProDiagInfos>
                                     foreach (string file in filteredFiles)
                                     {
                                         using (StreamReader reader = new StreamReader(file))
                                         {
                                             string fileName = Path.GetFileName(file);
-                                            var    data     = reader.Analyze(fileName);
+                                            var data = reader.Analyze(fileName);
                                             proDiagInfos.AddRange(data);
                                         }
                                     }
                                     feedback.Log(NotificationIcon.Information, "获取报警文本，并且添加到LIST<ProDiagInfos>");
                                 }
-                                
+
                                 #endregion
 
                                 #region 获取Supervision接口信息
-                                
+
                                 //定义Supervision接口信息列表
                                 var supervisionInfos = new List<SupervisionInfo>();
 
@@ -970,26 +974,26 @@ namespace Kengic
                                 }
 
                                 #endregion
-                                
+
                                 #region 获取HMI的Connection名称 
-                                
+
                                 //获取HMI目标
                                 //Device    hmiDevice = mainForm.device;
                                 string selectedName = mainForm.SelectName;
-                                Device hmiDevice    = projectBase.FindDeviceByName(selectedName);
+                                Device hmiDevice = projectBase.FindDeviceByName(selectedName);
 
                                 HmiTarget hmiTarget = hmiDevice.GetHmiTarget();
-                                
+
                                 //导出默认变量表
-                                TagTable defaultTagTable           = hmiTarget.TagFolder.DefaultTagTable;
-                                string   defaultTagTableExportPath = $@"{directory}\{defaultTagTable.Name}.xml";
+                                TagTable defaultTagTable = hmiTarget.TagFolder.DefaultTagTable;
+                                string defaultTagTableExportPath = $@"{directory}\{defaultTagTable.Name}.xml";
                                 defaultTagTable.ExportInfo(defaultTagTableExportPath);
 
                                 //获取Connection名称
                                 XmlDocument xmlDocument = new XmlDocument();
                                 xmlDocument.Load(defaultTagTableExportPath);
                                 string connection = xmlDocument.GetName("Connection");
-                                
+
                                 feedback.Log(NotificationIcon.Information, $"获取Connection名称:{connection}");
 
 
@@ -999,8 +1003,8 @@ namespace Kengic
 
                                 //定义变量表.xml文件
                                 XmlDocument tagTable = XmlAnalyze.TagTable();
-                                tagTable.SetAttribute("Name","自动生成报警变量表");
-                                    
+                                tagTable.SetAttribute("Name", "自动生成报警变量表");
+
                                 //定义变量.xml文件
                                 XmlDocument tag = XmlAnalyze.Tag();
 
@@ -1013,40 +1017,40 @@ namespace Kengic
                                 #region 处理报警文本和变量
 
                                 //定义报警文本和变量处理的临时变量
-                                int    tagCount = 1; //变量的名称递增
-                                int    tagID    = 1; //变量的ID递增
-                                int    textID   = 1; //报警文本ID递增
-                                string old      = null;
-                                string tagName  = null;
-                                
+                                int tagCount = 1; //变量的名称递增
+                                int tagID = 1; //变量的ID递增
+                                int textID = 1; //报警文本ID递增
+                                string old = null;
+                                string tagName = null;
+
                                 //写入Hmi变量表.xml文件
                                 foreach (SupervisionInfo xmlInfo in supervisionInfos)
                                 {
                                     if (old != xmlInfo.DB_Name)
                                     {
                                         //设置ID
-                                        tag.SetId(tagID); 
-                                        
+                                        tag.SetId(tagID);
+
                                         //计算和设置地址%DB1.DBW1
                                         string logicalAddress = xmlInfo.Offset.GetLogicalAddress(xmlInfo.DB_Number);
                                         tag.SetAttribute("LogicalAddress", logicalAddress);
-                                        
+
                                         //计算和设置名称P1001_O_1
                                         tagName = $"{xmlInfo.DB_Name}_O_1";
                                         tag.SetAttribute("Name", tagName);
-                                        
+
                                         //设置连接点信息
                                         tag.SetValue("Connection", connection);
-                                        
+
                                         //tagTable的XML插入一个变量
                                         tagTable.Insert(tag);
 
                                         //递增
                                         old = xmlInfo.DB_Name;
                                         tagID++;
-                    
+
                                         string[] parts = xmlInfo.Offset.Split('.');
-                                        if (parts.Length >0)
+                                        if (parts.Length > 0)
                                         {
                                             tagCount = Convert.ToInt32(parts[1]) + 1;
                                         }
@@ -1055,36 +1059,36 @@ namespace Kengic
                                             tagCount = 1;
                                         }
                                     }
-                                    
+
                                     //诊断接口超过8时
                                     if (tagCount > 8 && tagCount % 8 == 1)
                                     {
                                         //设置ID
-                                        tag.SetId(tagID); 
-                                        
+                                        tag.SetId(tagID);
+
                                         //计算和设置地址%DB1.DBW1
                                         string logicalAddress = xmlInfo.Offset.GetLogicalAddress(xmlInfo.DB_Number);
                                         tag.SetAttribute("LogicalAddress", logicalAddress);
-                                        
+
                                         //计算和设置名称P1001_O_1
                                         tagName = $"{xmlInfo.DB_Name}_O_{(tagCount / 8) + (tagCount % 8)}";
                                         tag.SetAttribute("Name", tagName);
-                                        
+
                                         //设置连接点信息
                                         tag.SetValue("Connection", connection);
-                                        
+
                                         //tagTable的XML插入一个变量
                                         tagTable.Insert(tag);
 
                                         //递增
                                         tagID++;
                                     }
-                                    
+
                                     if (old == xmlInfo.DB_Name)
                                     {
                                         tagCount++;
                                     }
-                                    
+
                                     //写入报警文本
                                     hmiAlarmTextEnglish.SetText(xmlInfo, "en-US", textID, tagName);
                                     hmiAlarmTextChinese.SetText(xmlInfo, "zh-CN", textID, tagName);
@@ -1119,7 +1123,7 @@ namespace Kengic
 
                             messageBox.ShowNotification(NotificationIcon.Success, "创建触摸屏报警完成",
                                 $"已导入触摸屏变量表[自动生成报警变量表] \n 已导出报警文本表格：\n {englishPath} \n {chinesePath}");
-                            
+
                             feedback.Log(NotificationIcon.Success, "<创建触摸屏报警>完成");
 
                             //创建回滚
@@ -1135,13 +1139,13 @@ namespace Kengic
             catch (EngineeringException ex)
             {
                 messageBox.ShowException(ex);
-                feedback.Log(NotificationIcon.Error,ex.Message);
+                feedback.Log(NotificationIcon.Error, ex.Message);
                 throw;
             }
             catch (Exception ex)
             {
                 messageBox.ShowException(ex);
-                feedback.Log(NotificationIcon.Error,ex.Message);
+                feedback.Log(NotificationIcon.Error, ex.Message);
                 throw;
             }
             finally
@@ -1149,7 +1153,7 @@ namespace Kengic
                 if (directory != null)
                 {
                     directory.DeleteDirectoryAndContents();//删除导出的.xml文件的文件夹
-                    feedback.Log(NotificationIcon.Information,$"已删除：{directory}文件夹");
+                    feedback.Log(NotificationIcon.Information, $"已删除：{directory}文件夹");
                 }
             }
         }
@@ -1165,12 +1169,12 @@ namespace Kengic
             System.Diagnostics.Debugger.Launch();
 #endif
             //反馈API
-            FeedbackContext feedback  = _tiaPortal.GetFeedbackContext();
-            feedback.Log(NotificationIcon.Information,"<指定ProDiagFB>");
-            
+            FeedbackProvider feedback = _tiaPortal.GetService<FeedbackProvider>();
+            feedback.Log(NotificationIcon.Information, "<指定ProDiagFB>");
+
             //MessageBox API
-            MessageBox messageBox = _tiaPortal.GetMessageBox();
-            
+            MessageBox messageBox = _tiaPortal.GetService<MessageBoxProvider>();
+
             try
             {
                 //创建独占窗口
@@ -1191,13 +1195,13 @@ namespace Kengic
                         //新建ProDiagFB选择窗体
                         ProDiagForm proDiagForm = new ProDiagForm();
 
-                        if (item =="1")
+                        if (item == "1")
                         {
                             //获取所有ProDiagFB，并把Name和PlcBlock写入到数据
-                            PlcSoftware   plcSoftware    = menuSelectionProvider.GetSelection().GetPlcSoftware();
+                            PlcSoftware plcSoftware = menuSelectionProvider.GetSelection().GetPlcSoftware();
                             PlcBlockGroup plcBlockGroups = plcSoftware.BlockGroup;
-                            var           proDiagFbs   = Command.GetProDiagFB(plcBlockGroups);
-                        
+                            var proDiagFbs = Command.GetProDiagFB(plcBlockGroups);
+
                             proDiagForm.SetDevices(proDiagFbs); //填充数据
 
                             if (proDiagForm.ShowDialog() != DialogResult.OK)
@@ -1207,7 +1211,7 @@ namespace Kengic
                             }
                             feedback.Log(NotificationIcon.Information, $"获取输入信息:{proDiagForm.Block}");
                         }
-                        
+
                         //轮询选中的实例块
                         foreach (InstanceDB instanceDb in menuSelectionProvider.GetSelection())
                         {
@@ -1219,9 +1223,9 @@ namespace Kengic
                             }
 
                             //获取当前AssignedProDiagFB
-                            var    AssignedProDiagFB = instanceDb.GetAttribute("AssignedProDiagFB");
+                            var AssignedProDiagFB = instanceDb.GetAttribute("AssignedProDiagFB");
                             string value = string.Empty;
-                            
+
                             if (AssignedProDiagFB != null)
                             {
                                 value = AssignedProDiagFB.ToString();
@@ -1260,20 +1264,20 @@ namespace Kengic
                     }
 
                     //导入完成
-                    messageBox.ShowNotification(NotificationIcon.Success, "完成","指定ProDiagFB完成");
+                    messageBox.ShowNotification(NotificationIcon.Success, "完成", "指定ProDiagFB完成");
                     feedback.Log(NotificationIcon.Success, $"<指定ProDiagFB>完成");
                 }
             }
             catch (EngineeringException ex)
             {
                 messageBox.ShowException(ex);
-                feedback.Log(NotificationIcon.Error,ex.Message);
+                feedback.Log(NotificationIcon.Error, ex.Message);
                 throw;
             }
             catch (Exception ex)
             {
                 messageBox.ShowException(ex);
-                feedback.Log(NotificationIcon.Error,ex.Message);
+                feedback.Log(NotificationIcon.Error, ex.Message);
                 throw;
             }
         }

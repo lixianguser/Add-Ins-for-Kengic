@@ -1,0 +1,575 @@
+.vscode/tasks.json
+Add-Ins for Kengic/bin/Debug/Add_Ins_for_Kengic.dll
+Add-Ins for Kengic/bin/Debug/Add_Ins_for_Kengic.pdb
+Add-Ins for Kengic/bin/Debug/BouncyCastle.Cryptography.dll
+Add-Ins for Kengic/bin/Debug/BouncyCastle.Cryptography.xml
+Add-Ins for Kengic/bin/Debug/Enums.NET.dll
+Add-Ins for Kengic/bin/Debug/Enums.NET.pdb
+Add-Ins for Kengic/bin/Debug/Enums.NET.xml
+Add-Ins for Kengic/bin/Debug/ICSharpCode.SharpZipLib.dll
+Add-Ins for Kengic/bin/Debug/ICSharpCode.SharpZipLib.pdb
+Add-Ins for Kengic/bin/Debug/ICSharpCode.SharpZipLib.xml
+Add-Ins for Kengic/bin/Debug/Log.txt
+Add-Ins for Kengic/bin/Debug/MathNet.Numerics.dll
+Add-Ins for Kengic/bin/Debug/MathNet.Numerics.xml
+Add-Ins for Kengic/bin/Debug/NPOI.Core.dll
+Add-Ins for Kengic/bin/Debug/NPOI.Core.pdb
+Add-Ins for Kengic/bin/Debug/NPOI.Core.xml
+Add-Ins for Kengic/bin/Debug/NPOI.OOXML.dll
+Add-Ins for Kengic/bin/Debug/NPOI.OOXML.pdb
+Add-Ins for Kengic/bin/Debug/NPOI.OOXML.xml
+Add-Ins for Kengic/bin/Debug/NPOI.OpenXml4Net.dll
+Add-Ins for Kengic/bin/Debug/NPOI.OpenXml4Net.pdb
+Add-Ins for Kengic/bin/Debug/NPOI.OpenXml4Net.xml
+Add-Ins for Kengic/bin/Debug/NPOI.OpenXmlFormats.dll
+Add-Ins for Kengic/bin/Debug/NPOI.OpenXmlFormats.pdb
+Add-Ins for Kengic/bin/Debug/NPOI.OpenXmlFormats.xml
+Add-Ins for Kengic/bin/Debug/Siemens.Engineering.AddIn.Base.dll
+Add-Ins for Kengic/bin/Debug/Siemens.Engineering.AddIn.Base.xml
+Add-Ins for Kengic/bin/Debug/Siemens.Engineering.AddIn.Permissions.dll
+Add-Ins for Kengic/bin/Debug/Siemens.Engineering.AddIn.Permissions.xml
+Add-Ins for Kengic/bin/Debug/Siemens.Engineering.AddIn.Utilities.dll
+Add-Ins for Kengic/bin/Debug/Siemens.Engineering.AddIn.Utilities.xml
+Add-Ins for Kengic/bin/Debug/Siemens.Engineering.Base.dll
+Add-Ins for Kengic/bin/Debug/Siemens.Engineering.Base.xml
+Add-Ins for Kengic/bin/Debug/Siemens.Engineering.Step7.dll
+Add-Ins for Kengic/bin/Debug/Siemens.Engineering.Step7.xml
+Add-Ins for Kengic/bin/Debug/Siemens.Engineering.WinCC.dll
+Add-Ins for Kengic/bin/Debug/Siemens.Engineering.WinCC.Extension.dll
+Add-Ins for Kengic/bin/Debug/Siemens.Engineering.WinCC.Extension.xml
+Add-Ins for Kengic/bin/Debug/Siemens.Engineering.WinCC.xml
+Add-Ins for Kengic/bin/Debug/SixLabors.Fonts.dll
+Add-Ins for Kengic/bin/Debug/SixLabors.Fonts.xml
+Add-Ins for Kengic/bin/Debug/SixLabors.ImageSharp.dll
+Add-Ins for Kengic/bin/Debug/SixLabors.ImageSharp.xml
+Add-Ins for Kengic/bin/Debug/System.Buffers.dll
+Add-Ins for Kengic/bin/Debug/System.Buffers.xml
+Add-Ins for Kengic/bin/Debug/System.Memory.dll
+Add-Ins for Kengic/bin/Debug/System.Memory.xml
+Add-Ins for Kengic/bin/Debug/System.Numerics.Vectors.dll
+Add-Ins for Kengic/bin/Debug/System.Numerics.Vectors.xml
+Add-Ins for Kengic/bin/Release/Add_Ins_for_Kengic.addin
+Add-Ins for Kengic/bin/Release/Add_Ins_for_Kengic.dll
+Add-Ins for Kengic/bin/Release/Add_Ins_for_Kengic.pdb
+Add-Ins for Kengic/bin/Release/BouncyCastle.Cryptography.dll
+Add-Ins for Kengic/bin/Release/BouncyCastle.Cryptography.xml
+Add-Ins for Kengic/bin/Release/Enums.NET.dll
+Add-Ins for Kengic/bin/Release/Enums.NET.pdb
+Add-Ins for Kengic/bin/Release/Enums.NET.xml
+Add-Ins for Kengic/bin/Release/ExtendedNumerics.BigDecimal.dll
+Add-Ins for Kengic/bin/Release/ExtendedNumerics.BigDecimal.xml
+Add-Ins for Kengic/bin/Release/ICSharpCode.SharpZipLib.dll
+Add-Ins for Kengic/bin/Release/ICSharpCode.SharpZipLib.pdb
+Add-Ins for Kengic/bin/Release/ICSharpCode.SharpZipLib.xml
+Add-Ins for Kengic/bin/Release/Log.txt
+Add-Ins for Kengic/bin/Release/MathNet.Numerics.dll
+Add-Ins for Kengic/bin/Release/MathNet.Numerics.xml
+Add-Ins for Kengic/bin/Release/Microsoft.IO.RecyclableMemoryStream.dll
+Add-Ins for Kengic/bin/Release/Microsoft.IO.RecyclableMemoryStream.xml
+Add-Ins for Kengic/bin/Release/NPOI.Core.dll
+Add-Ins for Kengic/bin/Release/NPOI.Core.pdb
+Add-Ins for Kengic/bin/Release/NPOI.Core.xml
+Add-Ins for Kengic/bin/Release/NPOI.OOXML.dll
+Add-Ins for Kengic/bin/Release/NPOI.OOXML.pdb
+Add-Ins for Kengic/bin/Release/NPOI.OOXML.xml
+Add-Ins for Kengic/bin/Release/NPOI.OpenXml4Net.dll
+Add-Ins for Kengic/bin/Release/NPOI.OpenXml4Net.pdb
+Add-Ins for Kengic/bin/Release/NPOI.OpenXml4Net.xml
+Add-Ins for Kengic/bin/Release/NPOI.OpenXmlFormats.dll
+Add-Ins for Kengic/bin/Release/NPOI.OpenXmlFormats.pdb
+Add-Ins for Kengic/bin/Release/NPOI.OpenXmlFormats.xml
+Add-Ins for Kengic/bin/Release/Siemens.Engineering.AddIn.Base.dll
+Add-Ins for Kengic/bin/Release/Siemens.Engineering.AddIn.Base.xml
+Add-Ins for Kengic/bin/Release/Siemens.Engineering.AddIn.Permissions.dll
+Add-Ins for Kengic/bin/Release/Siemens.Engineering.AddIn.Permissions.xml
+Add-Ins for Kengic/bin/Release/Siemens.Engineering.AddIn.Utilities.dll
+Add-Ins for Kengic/bin/Release/Siemens.Engineering.AddIn.Utilities.xml
+Add-Ins for Kengic/bin/Release/Siemens.Engineering.Base.dll
+Add-Ins for Kengic/bin/Release/Siemens.Engineering.Base.xml
+Add-Ins for Kengic/bin/Release/Siemens.Engineering.Step7.dll
+Add-Ins for Kengic/bin/Release/Siemens.Engineering.Step7.xml
+Add-Ins for Kengic/bin/Release/Siemens.Engineering.WinCC.dll
+Add-Ins for Kengic/bin/Release/Siemens.Engineering.WinCC.Extension.dll
+Add-Ins for Kengic/bin/Release/Siemens.Engineering.WinCC.Extension.xml
+Add-Ins for Kengic/bin/Release/Siemens.Engineering.WinCC.xml
+Add-Ins for Kengic/bin/Release/SixLabors.Fonts.dll
+Add-Ins for Kengic/bin/Release/SixLabors.Fonts.xml
+Add-Ins for Kengic/bin/Release/SixLabors.ImageSharp.dll
+Add-Ins for Kengic/bin/Release/SixLabors.ImageSharp.xml
+Add-Ins for Kengic/bin/Release/System.Buffers.dll
+Add-Ins for Kengic/bin/Release/System.Buffers.xml
+Add-Ins for Kengic/bin/Release/System.Memory.dll
+Add-Ins for Kengic/bin/Release/System.Memory.xml
+Add-Ins for Kengic/bin/Release/System.Numerics.Vectors.dll
+Add-Ins for Kengic/bin/Release/System.Numerics.Vectors.xml
+Add-Ins for Kengic/bin/Release/System.Runtime.CompilerServices.Unsafe.dll
+Add-Ins for Kengic/bin/Release/System.Runtime.CompilerServices.Unsafe.xml
+Add-Ins for Kengic/bin/Release/System.Security.Cryptography.Pkcs.dll
+Add-Ins for Kengic/bin/Release/System.Security.Cryptography.Pkcs.xml
+Add-Ins for Kengic/bin/Release/System.Security.Cryptography.Xml.dll
+Add-Ins for Kengic/bin/Release/System.Security.Cryptography.Xml.xml
+Add-Ins for Kengic/bin/Release/System.Text.Encoding.CodePages.dll
+Add-Ins for Kengic/bin/Release/System.Text.Encoding.CodePages.xml
+Add-Ins for Kengic/bin/Release/System.Threading.Tasks.Extensions.dll
+Add-Ins for Kengic/bin/Release/System.Threading.Tasks.Extensions.xml
+Add-Ins for Kengic/obj/Debug/.NETFramework,Version=v4.8.AssemblyAttributes.cs
+Add-Ins for Kengic/obj/Debug/Add_Ins_for_Kengic.dll
+Add-Ins for Kengic/obj/Debug/Add_Ins_for_Kengic.pdb
+Add-Ins for Kengic/obj/Debug/Add-Ins .BE4FC97C.Up2Date
+Add-Ins for Kengic/obj/Debug/Add-Ins for Kengic.csproj.AssemblyReference.cache
+Add-Ins for Kengic/obj/Debug/Add-Ins for Kengic.csproj.CoreCompileInputs.cache
+Add-Ins for Kengic/obj/Debug/Add-Ins for Kengic.csproj.FileListAbsolute.txt
+Add-Ins for Kengic/obj/Release/.NETFramework,Version=v4.8.AssemblyAttributes.cs
+Add-Ins for Kengic/obj/Release/Add_Ins_for_Kengic.dll
+Add-Ins for Kengic/obj/Release/Add_Ins_for_Kengic.pdb
+Add-Ins for Kengic/obj/Release/Add-Ins .BE4FC97C.Up2Date
+Add-Ins for Kengic/obj/Release/Add-Ins for Kengic.csproj.AssemblyReference.cache
+Add-Ins for Kengic/obj/Release/Add-Ins for Kengic.csproj.CoreCompileInputs.cache
+Add-Ins for Kengic/obj/Release/Add-Ins for Kengic.csproj.FileListAbsolute.txt
+packages/BouncyCastle.Cryptography.2.3.1/.signature.p7s
+packages/BouncyCastle.Cryptography.2.3.1/BouncyCastle.Cryptography.2.3.1.nupkg
+packages/BouncyCastle.Cryptography.2.3.1/LICENSE.md
+packages/BouncyCastle.Cryptography.2.3.1/packageIcon.png
+packages/BouncyCastle.Cryptography.2.3.1/README.md
+packages/BouncyCastle.Cryptography.2.3.1/lib/net461/BouncyCastle.Cryptography.dll
+packages/BouncyCastle.Cryptography.2.3.1/lib/net461/BouncyCastle.Cryptography.xml
+packages/BouncyCastle.Cryptography.2.3.1/lib/net6.0/BouncyCastle.Cryptography.dll
+packages/BouncyCastle.Cryptography.2.3.1/lib/net6.0/BouncyCastle.Cryptography.xml
+packages/BouncyCastle.Cryptography.2.3.1/lib/netstandard2.0/BouncyCastle.Cryptography.dll
+packages/BouncyCastle.Cryptography.2.3.1/lib/netstandard2.0/BouncyCastle.Cryptography.xml
+packages/Enums.NET.4.0.1/.signature.p7s
+packages/Enums.NET.4.0.1/Enums.NET.4.0.1.nupkg
+packages/Enums.NET.4.0.1/lib/net45/Enums.NET.dll
+packages/Enums.NET.4.0.1/lib/net45/Enums.NET.pdb
+packages/Enums.NET.4.0.1/lib/net45/Enums.NET.xml
+packages/Enums.NET.4.0.1/lib/netcoreapp3.0/Enums.NET.dll
+packages/Enums.NET.4.0.1/lib/netcoreapp3.0/Enums.NET.pdb
+packages/Enums.NET.4.0.1/lib/netcoreapp3.0/Enums.NET.xml
+packages/Enums.NET.4.0.1/lib/netstandard1.0/Enums.NET.dll
+packages/Enums.NET.4.0.1/lib/netstandard1.0/Enums.NET.pdb
+packages/Enums.NET.4.0.1/lib/netstandard1.0/Enums.NET.xml
+packages/Enums.NET.4.0.1/lib/netstandard1.1/Enums.NET.dll
+packages/Enums.NET.4.0.1/lib/netstandard1.1/Enums.NET.pdb
+packages/Enums.NET.4.0.1/lib/netstandard1.1/Enums.NET.xml
+packages/Enums.NET.4.0.1/lib/netstandard1.3/Enums.NET.dll
+packages/Enums.NET.4.0.1/lib/netstandard1.3/Enums.NET.pdb
+packages/Enums.NET.4.0.1/lib/netstandard1.3/Enums.NET.xml
+packages/Enums.NET.4.0.1/lib/netstandard2.0/Enums.NET.dll
+packages/Enums.NET.4.0.1/lib/netstandard2.0/Enums.NET.pdb
+packages/Enums.NET.4.0.1/lib/netstandard2.0/Enums.NET.xml
+packages/Enums.NET.4.0.1/lib/netstandard2.1/Enums.NET.dll
+packages/Enums.NET.4.0.1/lib/netstandard2.1/Enums.NET.pdb
+packages/Enums.NET.4.0.1/lib/netstandard2.1/Enums.NET.xml
+packages/ExtendedNumerics.BigDecimal.2025.1001.2.129/.signature.p7s
+packages/ExtendedNumerics.BigDecimal.2025.1001.2.129/ExtendedNumerics.BigDecimal.2025.1001.2.129.nupkg
+packages/ExtendedNumerics.BigDecimal.2025.1001.2.129/README.md
+packages/ExtendedNumerics.BigDecimal.2025.1001.2.129/lib/net45/ExtendedNumerics.BigDecimal.dll
+packages/ExtendedNumerics.BigDecimal.2025.1001.2.129/lib/net45/ExtendedNumerics.BigDecimal.xml
+packages/ExtendedNumerics.BigDecimal.2025.1001.2.129/lib/net46/ExtendedNumerics.BigDecimal.dll
+packages/ExtendedNumerics.BigDecimal.2025.1001.2.129/lib/net46/ExtendedNumerics.BigDecimal.xml
+packages/ExtendedNumerics.BigDecimal.2025.1001.2.129/lib/net472/ExtendedNumerics.BigDecimal.dll
+packages/ExtendedNumerics.BigDecimal.2025.1001.2.129/lib/net472/ExtendedNumerics.BigDecimal.xml
+packages/ExtendedNumerics.BigDecimal.2025.1001.2.129/lib/net48/ExtendedNumerics.BigDecimal.dll
+packages/ExtendedNumerics.BigDecimal.2025.1001.2.129/lib/net48/ExtendedNumerics.BigDecimal.xml
+packages/ExtendedNumerics.BigDecimal.2025.1001.2.129/lib/net5.0/ExtendedNumerics.BigDecimal.dll
+packages/ExtendedNumerics.BigDecimal.2025.1001.2.129/lib/net5.0/ExtendedNumerics.BigDecimal.xml
+packages/ExtendedNumerics.BigDecimal.2025.1001.2.129/lib/net6.0/ExtendedNumerics.BigDecimal.dll
+packages/ExtendedNumerics.BigDecimal.2025.1001.2.129/lib/net6.0/ExtendedNumerics.BigDecimal.xml
+packages/ExtendedNumerics.BigDecimal.2025.1001.2.129/lib/net7.0/ExtendedNumerics.BigDecimal.dll
+packages/ExtendedNumerics.BigDecimal.2025.1001.2.129/lib/net7.0/ExtendedNumerics.BigDecimal.xml
+packages/ExtendedNumerics.BigDecimal.2025.1001.2.129/lib/net8.0/ExtendedNumerics.BigDecimal.dll
+packages/ExtendedNumerics.BigDecimal.2025.1001.2.129/lib/net8.0/ExtendedNumerics.BigDecimal.xml
+packages/ExtendedNumerics.BigDecimal.2025.1001.2.129/lib/netcoreapp3.1/ExtendedNumerics.BigDecimal.dll
+packages/ExtendedNumerics.BigDecimal.2025.1001.2.129/lib/netcoreapp3.1/ExtendedNumerics.BigDecimal.xml
+packages/ExtendedNumerics.BigDecimal.2025.1001.2.129/lib/netstandard2.0/ExtendedNumerics.BigDecimal.dll
+packages/ExtendedNumerics.BigDecimal.2025.1001.2.129/lib/netstandard2.0/ExtendedNumerics.BigDecimal.xml
+packages/ExtendedNumerics.BigDecimal.2025.1001.2.129/lib/netstandard2.1/ExtendedNumerics.BigDecimal.dll
+packages/ExtendedNumerics.BigDecimal.2025.1001.2.129/lib/netstandard2.1/ExtendedNumerics.BigDecimal.xml
+packages/MathNet.Numerics.Signed.5.0.0/.signature.p7s
+packages/MathNet.Numerics.Signed.5.0.0/icon.png
+packages/MathNet.Numerics.Signed.5.0.0/MathNet.Numerics.Signed.5.0.0.nupkg
+packages/MathNet.Numerics.Signed.5.0.0/lib/net461/MathNet.Numerics.dll
+packages/MathNet.Numerics.Signed.5.0.0/lib/net461/MathNet.Numerics.xml
+packages/MathNet.Numerics.Signed.5.0.0/lib/net48/MathNet.Numerics.dll
+packages/MathNet.Numerics.Signed.5.0.0/lib/net48/MathNet.Numerics.xml
+packages/MathNet.Numerics.Signed.5.0.0/lib/net5.0/MathNet.Numerics.dll
+packages/MathNet.Numerics.Signed.5.0.0/lib/net5.0/MathNet.Numerics.xml
+packages/MathNet.Numerics.Signed.5.0.0/lib/net6.0/MathNet.Numerics.dll
+packages/MathNet.Numerics.Signed.5.0.0/lib/net6.0/MathNet.Numerics.xml
+packages/MathNet.Numerics.Signed.5.0.0/lib/netstandard2.0/MathNet.Numerics.dll
+packages/MathNet.Numerics.Signed.5.0.0/lib/netstandard2.0/MathNet.Numerics.xml
+packages/Microsoft.IO.RecyclableMemoryStream.3.0.0/.signature.p7s
+packages/Microsoft.IO.RecyclableMemoryStream.3.0.0/Microsoft.IO.RecyclableMemoryStream.3.0.0.nupkg
+packages/Microsoft.IO.RecyclableMemoryStream.3.0.0/README.md
+packages/Microsoft.IO.RecyclableMemoryStream.3.0.0/lib/net6.0/Microsoft.IO.RecyclableMemoryStream.dll
+packages/Microsoft.IO.RecyclableMemoryStream.3.0.0/lib/net6.0/Microsoft.IO.RecyclableMemoryStream.xml
+packages/Microsoft.IO.RecyclableMemoryStream.3.0.0/lib/netstandard2.0/Microsoft.IO.RecyclableMemoryStream.dll
+packages/Microsoft.IO.RecyclableMemoryStream.3.0.0/lib/netstandard2.0/Microsoft.IO.RecyclableMemoryStream.xml
+packages/Microsoft.IO.RecyclableMemoryStream.3.0.0/lib/netstandard2.1/Microsoft.IO.RecyclableMemoryStream.dll
+packages/Microsoft.IO.RecyclableMemoryStream.3.0.0/lib/netstandard2.1/Microsoft.IO.RecyclableMemoryStream.xml
+packages/NPOI.2.7.2/.signature.p7s
+packages/NPOI.2.7.2/LICENSE
+packages/NPOI.2.7.2/NPOI.2.7.2.nupkg
+packages/NPOI.2.7.2/Read Me.txt
+packages/NPOI.2.7.2/lib/net472/NPOI.Core.dll
+packages/NPOI.2.7.2/lib/net472/NPOI.Core.pdb
+packages/NPOI.2.7.2/lib/net472/NPOI.Core.xml
+packages/NPOI.2.7.2/lib/net472/NPOI.OOXML.dll
+packages/NPOI.2.7.2/lib/net472/NPOI.OOXML.pdb
+packages/NPOI.2.7.2/lib/net472/NPOI.OOXML.xml
+packages/NPOI.2.7.2/lib/net472/NPOI.OpenXml4Net.dll
+packages/NPOI.2.7.2/lib/net472/NPOI.OpenXml4Net.pdb
+packages/NPOI.2.7.2/lib/net472/NPOI.OpenXml4Net.xml
+packages/NPOI.2.7.2/lib/net472/NPOI.OpenXmlFormats.dll
+packages/NPOI.2.7.2/lib/net472/NPOI.OpenXmlFormats.pdb
+packages/NPOI.2.7.2/lib/net472/NPOI.OpenXmlFormats.xml
+packages/NPOI.2.7.2/lib/net6.0/NPOI.Core.dll
+packages/NPOI.2.7.2/lib/net6.0/NPOI.Core.pdb
+packages/NPOI.2.7.2/lib/net6.0/NPOI.Core.xml
+packages/NPOI.2.7.2/lib/net6.0/NPOI.OOXML.dll
+packages/NPOI.2.7.2/lib/net6.0/NPOI.OOXML.pdb
+packages/NPOI.2.7.2/lib/net6.0/NPOI.OOXML.xml
+packages/NPOI.2.7.2/lib/net6.0/NPOI.OpenXml4Net.dll
+packages/NPOI.2.7.2/lib/net6.0/NPOI.OpenXml4Net.pdb
+packages/NPOI.2.7.2/lib/net6.0/NPOI.OpenXml4Net.xml
+packages/NPOI.2.7.2/lib/net6.0/NPOI.OpenXmlFormats.dll
+packages/NPOI.2.7.2/lib/net6.0/NPOI.OpenXmlFormats.pdb
+packages/NPOI.2.7.2/lib/net6.0/NPOI.OpenXmlFormats.xml
+packages/NPOI.2.7.2/lib/netstandard2.0/NPOI.Core.dll
+packages/NPOI.2.7.2/lib/netstandard2.0/NPOI.Core.pdb
+packages/NPOI.2.7.2/lib/netstandard2.0/NPOI.Core.xml
+packages/NPOI.2.7.2/lib/netstandard2.0/NPOI.OOXML.dll
+packages/NPOI.2.7.2/lib/netstandard2.0/NPOI.OOXML.pdb
+packages/NPOI.2.7.2/lib/netstandard2.0/NPOI.OOXML.xml
+packages/NPOI.2.7.2/lib/netstandard2.0/NPOI.OpenXml4Net.dll
+packages/NPOI.2.7.2/lib/netstandard2.0/NPOI.OpenXml4Net.pdb
+packages/NPOI.2.7.2/lib/netstandard2.0/NPOI.OpenXml4Net.xml
+packages/NPOI.2.7.2/lib/netstandard2.0/NPOI.OpenXmlFormats.dll
+packages/NPOI.2.7.2/lib/netstandard2.0/NPOI.OpenXmlFormats.pdb
+packages/NPOI.2.7.2/lib/netstandard2.0/NPOI.OpenXmlFormats.xml
+packages/NPOI.2.7.2/lib/netstandard2.1/NPOI.Core.dll
+packages/NPOI.2.7.2/lib/netstandard2.1/NPOI.Core.pdb
+packages/NPOI.2.7.2/lib/netstandard2.1/NPOI.Core.xml
+packages/NPOI.2.7.2/lib/netstandard2.1/NPOI.OOXML.dll
+packages/NPOI.2.7.2/lib/netstandard2.1/NPOI.OOXML.pdb
+packages/NPOI.2.7.2/lib/netstandard2.1/NPOI.OOXML.xml
+packages/NPOI.2.7.2/lib/netstandard2.1/NPOI.OpenXml4Net.dll
+packages/NPOI.2.7.2/lib/netstandard2.1/NPOI.OpenXml4Net.pdb
+packages/NPOI.2.7.2/lib/netstandard2.1/NPOI.OpenXml4Net.xml
+packages/NPOI.2.7.2/lib/netstandard2.1/NPOI.OpenXmlFormats.dll
+packages/NPOI.2.7.2/lib/netstandard2.1/NPOI.OpenXmlFormats.pdb
+packages/NPOI.2.7.2/lib/netstandard2.1/NPOI.OpenXmlFormats.xml
+packages/NPOI.2.7.2/logo/32_32.jpg
+packages/NPOI.2.7.2/logo/60_60.jpg
+packages/NPOI.2.7.2/logo/120_120.jpg
+packages/NPOI.2.7.2/logo/240_240.png
+packages/SharpZipLib.1.4.2/.signature.p7s
+packages/SharpZipLib.1.4.2/SharpZipLib.1.4.2.nupkg
+packages/SharpZipLib.1.4.2/images/sharpziplib-nuget-256x256.png
+packages/SharpZipLib.1.4.2/lib/net6.0/ICSharpCode.SharpZipLib.dll
+packages/SharpZipLib.1.4.2/lib/net6.0/ICSharpCode.SharpZipLib.pdb
+packages/SharpZipLib.1.4.2/lib/net6.0/ICSharpCode.SharpZipLib.xml
+packages/SharpZipLib.1.4.2/lib/netstandard2.0/ICSharpCode.SharpZipLib.dll
+packages/SharpZipLib.1.4.2/lib/netstandard2.0/ICSharpCode.SharpZipLib.pdb
+packages/SharpZipLib.1.4.2/lib/netstandard2.0/ICSharpCode.SharpZipLib.xml
+packages/SharpZipLib.1.4.2/lib/netstandard2.1/ICSharpCode.SharpZipLib.dll
+packages/SharpZipLib.1.4.2/lib/netstandard2.1/ICSharpCode.SharpZipLib.pdb
+packages/SharpZipLib.1.4.2/lib/netstandard2.1/ICSharpCode.SharpZipLib.xml
+packages/Siemens.Collaboration.Net.3.0.1725521661/.signature.p7s
+packages/Siemens.Collaboration.Net.3.0.1725521661/LICENSE_NuGet.org.md
+packages/Siemens.Collaboration.Net.3.0.1725521661/Multilingual_ReadMe_OSS.html
+packages/Siemens.Collaboration.Net.3.0.1725521661/Siemens.Collaboration.Net.3.0.1725521661.nupkg
+packages/Siemens.Collaboration.Net.3.0.1725521661/lib/net48/Siemens.Collaboration.Net.dll
+packages/Siemens.Collaboration.Net.3.0.1725521661/lib/net48/Siemens.Collaboration.Net.xml
+packages/Siemens.Collaboration.Net.3.0.1725521661/lib/net6.0/Siemens.Collaboration.Net.dll
+packages/Siemens.Collaboration.Net.3.0.1725521661/lib/net6.0/Siemens.Collaboration.Net.xml
+packages/Siemens.Collaboration.Net.3.0.1725521661/lib/netstandard2.0/Siemens.Collaboration.Net.dll
+packages/Siemens.Collaboration.Net.3.0.1725521661/lib/netstandard2.0/Siemens.Collaboration.Net.xml
+packages/Siemens.Collaboration.Net.CoreExtensions.3.0.1725521661/.signature.p7s
+packages/Siemens.Collaboration.Net.CoreExtensions.3.0.1725521661/LICENSE_NuGet.org.md
+packages/Siemens.Collaboration.Net.CoreExtensions.3.0.1725521661/Multilingual_ReadMe_OSS.html
+packages/Siemens.Collaboration.Net.CoreExtensions.3.0.1725521661/Siemens.Collaboration.Net.CoreExtensions.3.0.1725521661.nupkg
+packages/Siemens.Collaboration.Net.CoreExtensions.3.0.1725521661/lib/net48/Siemens.Collaboration.Net.CoreExtensions.dll
+packages/Siemens.Collaboration.Net.CoreExtensions.3.0.1725521661/lib/net48/Siemens.Collaboration.Net.CoreExtensions.xml
+packages/Siemens.Collaboration.Net.CoreExtensions.3.0.1725521661/lib/net6.0/Siemens.Collaboration.Net.CoreExtensions.dll
+packages/Siemens.Collaboration.Net.CoreExtensions.3.0.1725521661/lib/net6.0/Siemens.Collaboration.Net.CoreExtensions.xml
+packages/Siemens.Collaboration.Net.CoreExtensions.3.0.1725521661/lib/netstandard2.0/Siemens.Collaboration.Net.CoreExtensions.dll
+packages/Siemens.Collaboration.Net.CoreExtensions.3.0.1725521661/lib/netstandard2.0/Siemens.Collaboration.Net.CoreExtensions.xml
+packages/SixLabors.Fonts.1.0.1/.signature.p7s
+packages/SixLabors.Fonts.1.0.1/SixLabors.Fonts.1.0.1.nupkg
+packages/SixLabors.Fonts.1.0.1/sixlabors.fonts.128.png
+packages/SixLabors.Fonts.1.0.1/lib/netcoreapp3.1/SixLabors.Fonts.dll
+packages/SixLabors.Fonts.1.0.1/lib/netcoreapp3.1/SixLabors.Fonts.xml
+packages/SixLabors.Fonts.1.0.1/lib/netstandard2.0/SixLabors.Fonts.dll
+packages/SixLabors.Fonts.1.0.1/lib/netstandard2.0/SixLabors.Fonts.xml
+packages/SixLabors.Fonts.1.0.1/lib/netstandard2.1/SixLabors.Fonts.dll
+packages/SixLabors.Fonts.1.0.1/lib/netstandard2.1/SixLabors.Fonts.xml
+packages/SixLabors.ImageSharp.3.1.10/.signature.p7s
+packages/SixLabors.ImageSharp.3.1.10/LICENSE
+packages/SixLabors.ImageSharp.3.1.10/SixLabors.ImageSharp.3.1.10.nupkg
+packages/SixLabors.ImageSharp.3.1.10/sixlabors.imagesharp.128.png
+packages/SixLabors.ImageSharp.3.1.10/build/SixLabors.ImageSharp.props
+packages/SixLabors.ImageSharp.3.1.10/lib/net6.0/SixLabors.ImageSharp.dll
+packages/SixLabors.ImageSharp.3.1.10/lib/net6.0/SixLabors.ImageSharp.xml
+packages/System.Buffers.4.5.1/.signature.p7s
+packages/System.Buffers.4.5.1/LICENSE.TXT
+packages/System.Buffers.4.5.1/System.Buffers.4.5.1.nupkg
+packages/System.Buffers.4.5.1/THIRD-PARTY-NOTICES.TXT
+packages/System.Buffers.4.5.1/useSharedDesignerContext.txt
+packages/System.Buffers.4.5.1/version.txt
+packages/System.Buffers.4.5.1/lib/net461/System.Buffers.dll
+packages/System.Buffers.4.5.1/lib/net461/System.Buffers.xml
+packages/System.Buffers.4.5.1/lib/netcoreapp2.0/_._
+packages/System.Buffers.4.5.1/lib/netstandard1.1/System.Buffers.dll
+packages/System.Buffers.4.5.1/lib/netstandard1.1/System.Buffers.xml
+packages/System.Buffers.4.5.1/lib/netstandard2.0/System.Buffers.dll
+packages/System.Buffers.4.5.1/lib/netstandard2.0/System.Buffers.xml
+packages/System.Buffers.4.5.1/lib/uap10.0.16299/_._
+packages/System.Buffers.4.5.1/ref/net45/System.Buffers.dll
+packages/System.Buffers.4.5.1/ref/net45/System.Buffers.xml
+packages/System.Buffers.4.5.1/ref/netcoreapp2.0/_._
+packages/System.Buffers.4.5.1/ref/netstandard1.1/System.Buffers.dll
+packages/System.Buffers.4.5.1/ref/netstandard1.1/System.Buffers.xml
+packages/System.Buffers.4.5.1/ref/netstandard2.0/System.Buffers.dll
+packages/System.Buffers.4.5.1/ref/netstandard2.0/System.Buffers.xml
+packages/System.Buffers.4.5.1/ref/uap10.0.16299/_._
+packages/System.Memory.4.5.5/.signature.p7s
+packages/System.Memory.4.5.5/LICENSE.TXT
+packages/System.Memory.4.5.5/System.Memory.4.5.5.nupkg
+packages/System.Memory.4.5.5/THIRD-PARTY-NOTICES.TXT
+packages/System.Memory.4.5.5/useSharedDesignerContext.txt
+packages/System.Memory.4.5.5/version.txt
+packages/System.Memory.4.5.5/lib/net461/System.Memory.dll
+packages/System.Memory.4.5.5/lib/net461/System.Memory.xml
+packages/System.Memory.4.5.5/lib/netcoreapp2.1/_._
+packages/System.Memory.4.5.5/lib/netstandard1.1/System.Memory.dll
+packages/System.Memory.4.5.5/lib/netstandard1.1/System.Memory.xml
+packages/System.Memory.4.5.5/lib/netstandard2.0/System.Memory.dll
+packages/System.Memory.4.5.5/lib/netstandard2.0/System.Memory.xml
+packages/System.Memory.4.5.5/ref/netcoreapp2.1/_._
+packages/System.Numerics.Vectors.4.5.0/.signature.p7s
+packages/System.Numerics.Vectors.4.5.0/LICENSE.TXT
+packages/System.Numerics.Vectors.4.5.0/System.Numerics.Vectors.4.5.0.nupkg
+packages/System.Numerics.Vectors.4.5.0/THIRD-PARTY-NOTICES.TXT
+packages/System.Numerics.Vectors.4.5.0/useSharedDesignerContext.txt
+packages/System.Numerics.Vectors.4.5.0/version.txt
+packages/System.Numerics.Vectors.4.5.0/lib/MonoAndroid10/_._
+packages/System.Numerics.Vectors.4.5.0/lib/MonoTouch10/_._
+packages/System.Numerics.Vectors.4.5.0/lib/net46/System.Numerics.Vectors.dll
+packages/System.Numerics.Vectors.4.5.0/lib/net46/System.Numerics.Vectors.xml
+packages/System.Numerics.Vectors.4.5.0/lib/netcoreapp2.0/_._
+packages/System.Numerics.Vectors.4.5.0/lib/netstandard1.0/System.Numerics.Vectors.dll
+packages/System.Numerics.Vectors.4.5.0/lib/netstandard1.0/System.Numerics.Vectors.xml
+packages/System.Numerics.Vectors.4.5.0/lib/netstandard2.0/System.Numerics.Vectors.dll
+packages/System.Numerics.Vectors.4.5.0/lib/netstandard2.0/System.Numerics.Vectors.xml
+packages/System.Numerics.Vectors.4.5.0/lib/portable-net45+win8+wp8+wpa81/System.Numerics.Vectors.dll
+packages/System.Numerics.Vectors.4.5.0/lib/portable-net45+win8+wp8+wpa81/System.Numerics.Vectors.xml
+packages/System.Numerics.Vectors.4.5.0/lib/uap10.0.16299/_._
+packages/System.Numerics.Vectors.4.5.0/lib/xamarinios10/_._
+packages/System.Numerics.Vectors.4.5.0/lib/xamarinmac20/_._
+packages/System.Numerics.Vectors.4.5.0/lib/xamarintvos10/_._
+packages/System.Numerics.Vectors.4.5.0/lib/xamarinwatchos10/_._
+packages/System.Numerics.Vectors.4.5.0/ref/MonoAndroid10/_._
+packages/System.Numerics.Vectors.4.5.0/ref/MonoTouch10/_._
+packages/System.Numerics.Vectors.4.5.0/ref/net45/System.Numerics.Vectors.dll
+packages/System.Numerics.Vectors.4.5.0/ref/net45/System.Numerics.Vectors.xml
+packages/System.Numerics.Vectors.4.5.0/ref/net46/System.Numerics.Vectors.dll
+packages/System.Numerics.Vectors.4.5.0/ref/net46/System.Numerics.Vectors.xml
+packages/System.Numerics.Vectors.4.5.0/ref/netcoreapp2.0/_._
+packages/System.Numerics.Vectors.4.5.0/ref/netstandard1.0/System.Numerics.Vectors.dll
+packages/System.Numerics.Vectors.4.5.0/ref/netstandard1.0/System.Numerics.Vectors.xml
+packages/System.Numerics.Vectors.4.5.0/ref/netstandard2.0/System.Numerics.Vectors.dll
+packages/System.Numerics.Vectors.4.5.0/ref/netstandard2.0/System.Numerics.Vectors.xml
+packages/System.Numerics.Vectors.4.5.0/ref/uap10.0.16299/_._
+packages/System.Numerics.Vectors.4.5.0/ref/xamarinios10/_._
+packages/System.Numerics.Vectors.4.5.0/ref/xamarinmac20/_._
+packages/System.Numerics.Vectors.4.5.0/ref/xamarintvos10/_._
+packages/System.Numerics.Vectors.4.5.0/ref/xamarinwatchos10/_._
+packages/System.Runtime.CompilerServices.Unsafe.5.0.0/.signature.p7s
+packages/System.Runtime.CompilerServices.Unsafe.5.0.0/Icon.png
+packages/System.Runtime.CompilerServices.Unsafe.5.0.0/LICENSE.TXT
+packages/System.Runtime.CompilerServices.Unsafe.5.0.0/System.Runtime.CompilerServices.Unsafe.5.0.0.nupkg
+packages/System.Runtime.CompilerServices.Unsafe.5.0.0/THIRD-PARTY-NOTICES.TXT
+packages/System.Runtime.CompilerServices.Unsafe.5.0.0/useSharedDesignerContext.txt
+packages/System.Runtime.CompilerServices.Unsafe.5.0.0/version.txt
+packages/System.Runtime.CompilerServices.Unsafe.5.0.0/lib/net45/System.Runtime.CompilerServices.Unsafe.dll
+packages/System.Runtime.CompilerServices.Unsafe.5.0.0/lib/net45/System.Runtime.CompilerServices.Unsafe.xml
+packages/System.Runtime.CompilerServices.Unsafe.5.0.0/lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.dll
+packages/System.Runtime.CompilerServices.Unsafe.5.0.0/lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.xml
+packages/System.Runtime.CompilerServices.Unsafe.5.0.0/lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll
+packages/System.Runtime.CompilerServices.Unsafe.5.0.0/lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.xml
+packages/System.Runtime.CompilerServices.Unsafe.5.0.0/lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll
+packages/System.Runtime.CompilerServices.Unsafe.5.0.0/lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.xml
+packages/System.Runtime.CompilerServices.Unsafe.5.0.0/ref/net461/System.Runtime.CompilerServices.Unsafe.dll
+packages/System.Runtime.CompilerServices.Unsafe.5.0.0/ref/net461/System.Runtime.CompilerServices.Unsafe.xml
+packages/System.Runtime.CompilerServices.Unsafe.5.0.0/ref/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll
+packages/System.Runtime.CompilerServices.Unsafe.5.0.0/ref/netstandard1.0/System.Runtime.CompilerServices.Unsafe.xml
+packages/System.Runtime.CompilerServices.Unsafe.5.0.0/ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll
+packages/System.Runtime.CompilerServices.Unsafe.5.0.0/ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.xml
+packages/System.Runtime.CompilerServices.Unsafe.5.0.0/ref/netstandard2.1/System.Runtime.CompilerServices.Unsafe.dll
+packages/System.Runtime.CompilerServices.Unsafe.5.0.0/ref/netstandard2.1/System.Runtime.CompilerServices.Unsafe.xml
+packages/System.Security.Cryptography.Pkcs.8.0.1/.signature.p7s
+packages/System.Security.Cryptography.Pkcs.8.0.1/Icon.png
+packages/System.Security.Cryptography.Pkcs.8.0.1/LICENSE.TXT
+packages/System.Security.Cryptography.Pkcs.8.0.1/System.Security.Cryptography.Pkcs.8.0.1.nupkg
+packages/System.Security.Cryptography.Pkcs.8.0.1/THIRD-PARTY-NOTICES.TXT
+packages/System.Security.Cryptography.Pkcs.8.0.1/useSharedDesignerContext.txt
+packages/System.Security.Cryptography.Pkcs.8.0.1/buildTransitive/net461/System.Security.Cryptography.Pkcs.targets
+packages/System.Security.Cryptography.Pkcs.8.0.1/buildTransitive/net462/_._
+packages/System.Security.Cryptography.Pkcs.8.0.1/buildTransitive/net6.0/_._
+packages/System.Security.Cryptography.Pkcs.8.0.1/buildTransitive/netcoreapp2.0/System.Security.Cryptography.Pkcs.targets
+packages/System.Security.Cryptography.Pkcs.8.0.1/lib/net462/System.Security.Cryptography.Pkcs.dll
+packages/System.Security.Cryptography.Pkcs.8.0.1/lib/net462/System.Security.Cryptography.Pkcs.xml
+packages/System.Security.Cryptography.Pkcs.8.0.1/lib/net6.0/System.Security.Cryptography.Pkcs.dll
+packages/System.Security.Cryptography.Pkcs.8.0.1/lib/net6.0/System.Security.Cryptography.Pkcs.xml
+packages/System.Security.Cryptography.Pkcs.8.0.1/lib/net7.0/System.Security.Cryptography.Pkcs.dll
+packages/System.Security.Cryptography.Pkcs.8.0.1/lib/net7.0/System.Security.Cryptography.Pkcs.xml
+packages/System.Security.Cryptography.Pkcs.8.0.1/lib/net8.0/System.Security.Cryptography.Pkcs.dll
+packages/System.Security.Cryptography.Pkcs.8.0.1/lib/net8.0/System.Security.Cryptography.Pkcs.xml
+packages/System.Security.Cryptography.Pkcs.8.0.1/lib/netstandard2.0/System.Security.Cryptography.Pkcs.dll
+packages/System.Security.Cryptography.Pkcs.8.0.1/lib/netstandard2.0/System.Security.Cryptography.Pkcs.xml
+packages/System.Security.Cryptography.Pkcs.8.0.1/lib/netstandard2.1/System.Security.Cryptography.Pkcs.dll
+packages/System.Security.Cryptography.Pkcs.8.0.1/lib/netstandard2.1/System.Security.Cryptography.Pkcs.xml
+packages/System.Security.Cryptography.Pkcs.8.0.1/runtimes/win/lib/net6.0/System.Security.Cryptography.Pkcs.dll
+packages/System.Security.Cryptography.Pkcs.8.0.1/runtimes/win/lib/net6.0/System.Security.Cryptography.Pkcs.xml
+packages/System.Security.Cryptography.Pkcs.8.0.1/runtimes/win/lib/net7.0/System.Security.Cryptography.Pkcs.dll
+packages/System.Security.Cryptography.Pkcs.8.0.1/runtimes/win/lib/net7.0/System.Security.Cryptography.Pkcs.xml
+packages/System.Security.Cryptography.Pkcs.8.0.1/runtimes/win/lib/net8.0/System.Security.Cryptography.Pkcs.dll
+packages/System.Security.Cryptography.Pkcs.8.0.1/runtimes/win/lib/net8.0/System.Security.Cryptography.Pkcs.xml
+packages/System.Security.Cryptography.Xml.8.0.2/.signature.p7s
+packages/System.Security.Cryptography.Xml.8.0.2/Icon.png
+packages/System.Security.Cryptography.Xml.8.0.2/LICENSE.TXT
+packages/System.Security.Cryptography.Xml.8.0.2/System.Security.Cryptography.Xml.8.0.2.nupkg
+packages/System.Security.Cryptography.Xml.8.0.2/THIRD-PARTY-NOTICES.TXT
+packages/System.Security.Cryptography.Xml.8.0.2/useSharedDesignerContext.txt
+packages/System.Security.Cryptography.Xml.8.0.2/buildTransitive/net461/System.Security.Cryptography.Xml.targets
+packages/System.Security.Cryptography.Xml.8.0.2/buildTransitive/net462/_._
+packages/System.Security.Cryptography.Xml.8.0.2/buildTransitive/net6.0/_._
+packages/System.Security.Cryptography.Xml.8.0.2/buildTransitive/netcoreapp2.0/System.Security.Cryptography.Xml.targets
+packages/System.Security.Cryptography.Xml.8.0.2/lib/net462/System.Security.Cryptography.Xml.dll
+packages/System.Security.Cryptography.Xml.8.0.2/lib/net462/System.Security.Cryptography.Xml.xml
+packages/System.Security.Cryptography.Xml.8.0.2/lib/net6.0/System.Security.Cryptography.Xml.dll
+packages/System.Security.Cryptography.Xml.8.0.2/lib/net6.0/System.Security.Cryptography.Xml.xml
+packages/System.Security.Cryptography.Xml.8.0.2/lib/net7.0/System.Security.Cryptography.Xml.dll
+packages/System.Security.Cryptography.Xml.8.0.2/lib/net7.0/System.Security.Cryptography.Xml.xml
+packages/System.Security.Cryptography.Xml.8.0.2/lib/net8.0/System.Security.Cryptography.Xml.dll
+packages/System.Security.Cryptography.Xml.8.0.2/lib/net8.0/System.Security.Cryptography.Xml.xml
+packages/System.Security.Cryptography.Xml.8.0.2/lib/netstandard2.0/System.Security.Cryptography.Xml.dll
+packages/System.Security.Cryptography.Xml.8.0.2/lib/netstandard2.0/System.Security.Cryptography.Xml.xml
+packages/System.Text.Encoding.CodePages.5.0.0/.signature.p7s
+packages/System.Text.Encoding.CodePages.5.0.0/Icon.png
+packages/System.Text.Encoding.CodePages.5.0.0/LICENSE.TXT
+packages/System.Text.Encoding.CodePages.5.0.0/System.Text.Encoding.CodePages.5.0.0.nupkg
+packages/System.Text.Encoding.CodePages.5.0.0/THIRD-PARTY-NOTICES.TXT
+packages/System.Text.Encoding.CodePages.5.0.0/useSharedDesignerContext.txt
+packages/System.Text.Encoding.CodePages.5.0.0/version.txt
+packages/System.Text.Encoding.CodePages.5.0.0/lib/MonoAndroid10/_._
+packages/System.Text.Encoding.CodePages.5.0.0/lib/MonoTouch10/_._
+packages/System.Text.Encoding.CodePages.5.0.0/lib/net46/System.Text.Encoding.CodePages.dll
+packages/System.Text.Encoding.CodePages.5.0.0/lib/net461/System.Text.Encoding.CodePages.dll
+packages/System.Text.Encoding.CodePages.5.0.0/lib/net461/System.Text.Encoding.CodePages.xml
+packages/System.Text.Encoding.CodePages.5.0.0/lib/netstandard1.3/System.Text.Encoding.CodePages.dll
+packages/System.Text.Encoding.CodePages.5.0.0/lib/netstandard2.0/System.Text.Encoding.CodePages.dll
+packages/System.Text.Encoding.CodePages.5.0.0/lib/netstandard2.0/System.Text.Encoding.CodePages.xml
+packages/System.Text.Encoding.CodePages.5.0.0/lib/xamarinios10/_._
+packages/System.Text.Encoding.CodePages.5.0.0/lib/xamarinmac20/_._
+packages/System.Text.Encoding.CodePages.5.0.0/lib/xamarintvos10/_._
+packages/System.Text.Encoding.CodePages.5.0.0/lib/xamarinwatchos10/_._
+packages/System.Text.Encoding.CodePages.5.0.0/ref/MonoAndroid10/_._
+packages/System.Text.Encoding.CodePages.5.0.0/ref/MonoTouch10/_._
+packages/System.Text.Encoding.CodePages.5.0.0/ref/xamarinios10/_._
+packages/System.Text.Encoding.CodePages.5.0.0/ref/xamarinmac20/_._
+packages/System.Text.Encoding.CodePages.5.0.0/ref/xamarintvos10/_._
+packages/System.Text.Encoding.CodePages.5.0.0/ref/xamarinwatchos10/_._
+packages/System.Text.Encoding.CodePages.5.0.0/runtimes/win/lib/net461/System.Text.Encoding.CodePages.dll
+packages/System.Text.Encoding.CodePages.5.0.0/runtimes/win/lib/net461/System.Text.Encoding.CodePages.xml
+packages/System.Text.Encoding.CodePages.5.0.0/runtimes/win/lib/netcoreapp2.0/System.Text.Encoding.CodePages.dll
+packages/System.Text.Encoding.CodePages.5.0.0/runtimes/win/lib/netcoreapp2.0/System.Text.Encoding.CodePages.xml
+packages/System.Text.Encoding.CodePages.5.0.0/runtimes/win/lib/netstandard1.3/System.Text.Encoding.CodePages.dll
+packages/System.Text.Encoding.CodePages.5.0.0/runtimes/win/lib/netstandard2.0/System.Text.Encoding.CodePages.dll
+packages/System.Text.Encoding.CodePages.5.0.0/runtimes/win/lib/netstandard2.0/System.Text.Encoding.CodePages.xml
+packages/System.Threading.Tasks.Extensions.4.5.2/.signature.p7s
+packages/System.Threading.Tasks.Extensions.4.5.2/LICENSE.TXT
+packages/System.Threading.Tasks.Extensions.4.5.2/System.Threading.Tasks.Extensions.4.5.2.nupkg
+packages/System.Threading.Tasks.Extensions.4.5.2/THIRD-PARTY-NOTICES.TXT
+packages/System.Threading.Tasks.Extensions.4.5.2/useSharedDesignerContext.txt
+packages/System.Threading.Tasks.Extensions.4.5.2/version.txt
+packages/System.Threading.Tasks.Extensions.4.5.2/lib/MonoAndroid10/_._
+packages/System.Threading.Tasks.Extensions.4.5.2/lib/MonoTouch10/_._
+packages/System.Threading.Tasks.Extensions.4.5.2/lib/netcoreapp2.1/_._
+packages/System.Threading.Tasks.Extensions.4.5.2/lib/netstandard1.0/System.Threading.Tasks.Extensions.dll
+packages/System.Threading.Tasks.Extensions.4.5.2/lib/netstandard1.0/System.Threading.Tasks.Extensions.xml
+packages/System.Threading.Tasks.Extensions.4.5.2/lib/netstandard2.0/System.Threading.Tasks.Extensions.dll
+packages/System.Threading.Tasks.Extensions.4.5.2/lib/netstandard2.0/System.Threading.Tasks.Extensions.xml
+packages/System.Threading.Tasks.Extensions.4.5.2/lib/portable-net45+win8+wp8+wpa81/System.Threading.Tasks.Extensions.dll
+packages/System.Threading.Tasks.Extensions.4.5.2/lib/portable-net45+win8+wp8+wpa81/System.Threading.Tasks.Extensions.xml
+packages/System.Threading.Tasks.Extensions.4.5.2/lib/xamarinios10/_._
+packages/System.Threading.Tasks.Extensions.4.5.2/lib/xamarinmac20/_._
+packages/System.Threading.Tasks.Extensions.4.5.2/lib/xamarintvos10/_._
+packages/System.Threading.Tasks.Extensions.4.5.2/lib/xamarinwatchos10/_._
+packages/System.Threading.Tasks.Extensions.4.5.2/ref/MonoAndroid10/_._
+packages/System.Threading.Tasks.Extensions.4.5.2/ref/MonoTouch10/_._
+packages/System.Threading.Tasks.Extensions.4.5.2/ref/netcoreapp2.1/_._
+packages/System.Threading.Tasks.Extensions.4.5.2/ref/xamarinios10/_._
+packages/System.Threading.Tasks.Extensions.4.5.2/ref/xamarinmac20/_._
+packages/System.Threading.Tasks.Extensions.4.5.2/ref/xamarintvos10/_._
+packages/System.Threading.Tasks.Extensions.4.5.2/ref/xamarinwatchos10/_._
+.vscode/launch.json
+_verify_pdb/Add_Ins_for_Kengic.dll
+_verify_pdb/Add_Ins_for_Kengic.pdb
+_verify_pdb/BouncyCastle.Cryptography.dll
+_verify_pdb/BouncyCastle.Cryptography.xml
+_verify_pdb/Enums.NET.dll
+_verify_pdb/Enums.NET.pdb
+_verify_pdb/Enums.NET.xml
+_verify_pdb/ExtendedNumerics.BigDecimal.dll
+_verify_pdb/ExtendedNumerics.BigDecimal.xml
+_verify_pdb/ICSharpCode.SharpZipLib.dll
+_verify_pdb/ICSharpCode.SharpZipLib.pdb
+_verify_pdb/ICSharpCode.SharpZipLib.xml
+_verify_pdb/MathNet.Numerics.dll
+_verify_pdb/MathNet.Numerics.xml
+_verify_pdb/Microsoft.IO.RecyclableMemoryStream.dll
+_verify_pdb/Microsoft.IO.RecyclableMemoryStream.xml
+_verify_pdb/NPOI.Core.dll
+_verify_pdb/NPOI.Core.pdb
+_verify_pdb/NPOI.Core.xml
+_verify_pdb/NPOI.OOXML.dll
+_verify_pdb/NPOI.OOXML.pdb
+_verify_pdb/NPOI.OOXML.xml
+_verify_pdb/NPOI.OpenXml4Net.dll
+_verify_pdb/NPOI.OpenXml4Net.pdb
+_verify_pdb/NPOI.OpenXml4Net.xml
+_verify_pdb/NPOI.OpenXmlFormats.dll
+_verify_pdb/NPOI.OpenXmlFormats.pdb
+_verify_pdb/NPOI.OpenXmlFormats.xml
+_verify_pdb/Siemens.Engineering.AddIn.Base.dll
+_verify_pdb/Siemens.Engineering.AddIn.Base.xml
+_verify_pdb/Siemens.Engineering.Base.dll
+_verify_pdb/Siemens.Engineering.Base.xml
+_verify_pdb/Siemens.Engineering.Step7.dll
+_verify_pdb/Siemens.Engineering.Step7.xml
+_verify_pdb/Siemens.Engineering.WinCC.dll
+_verify_pdb/Siemens.Engineering.WinCC.Extension.dll
+_verify_pdb/Siemens.Engineering.WinCC.Extension.xml
+_verify_pdb/Siemens.Engineering.WinCC.xml
+_verify_pdb/SixLabors.Fonts.dll
+_verify_pdb/SixLabors.Fonts.xml
+_verify_pdb/SixLabors.ImageSharp.dll
+_verify_pdb/SixLabors.ImageSharp.xml
+_verify_pdb/System.Buffers.dll
+_verify_pdb/System.Buffers.xml
+_verify_pdb/System.Memory.dll
+_verify_pdb/System.Memory.xml
+_verify_pdb/System.Numerics.Vectors.dll
+_verify_pdb/System.Numerics.Vectors.xml
+_verify_pdb/System.Runtime.CompilerServices.Unsafe.dll
+_verify_pdb/System.Runtime.CompilerServices.Unsafe.xml
+_verify_pdb/System.Security.Cryptography.Pkcs.dll
+_verify_pdb/System.Security.Cryptography.Pkcs.xml
+_verify_pdb/System.Security.Cryptography.Xml.dll
+_verify_pdb/System.Security.Cryptography.Xml.xml
+_verify_pdb/System.Text.Encoding.CodePages.dll
+_verify_pdb/System.Text.Encoding.CodePages.xml
+_verify_pdb/System.Threading.Tasks.Extensions.dll
+_verify_pdb/System.Threading.Tasks.Extensions.xml
